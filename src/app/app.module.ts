@@ -10,7 +10,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent ,
   ],
   imports: [
     BrowserModule,
