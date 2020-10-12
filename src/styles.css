@@ -1,1 +1,353 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "assets/styles/scrollbar.css";
+@import "assets/styles/leftNav.css";
+body {
+  /*background-color: #f5f7f8 !important;*/
+  background-color: var(--background-color) !important;
+  margin: 0px;
+  top: 100px;
+  font-size: 1em !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /*color: steelblue;*/
+  color: var(--text-color);
+}
+
+.positionMiddle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.splitbuttonclass {
+  text-align: right !important;
+  padding: 0em;
+}
+
+body .ui-toolbar {
+  /*background-color: #ffffff !important;*/
+  background-color: var(--toolbar-background-color) !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  /*color: cornflowerblue !important;*/
+  color: var(--toolbar-color) !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.removeSelection.ui-listbox
+  .ui-listbox-list
+  .ui-listbox-item.ui-state-highlight {
+  color: black !important;
+  background-color: transparent !important;
+}
+
+body .ui-table .ui-table-tbody > tr.ui-state-highlight {
+  color: black !important;
+  background-color: transparent !important;
+}
+
+body .ui-table .ui-table-thead > tr > th {
+  padding: 0.571em 0.857em;
+  border: 1px solid var(--table-border-color) !important;
+  font-weight: 700;
+  color: var(--table-th-color) !important;
+  background-color: var(--table-th-background) !important;
+}
+
+body .ui-table .ui-table-tbody > tr > td {
+  background-color: var(--table-td-background) !important;
+  border: 1px solid var(--table-border-color) !important;
+  color: var(--table-td-color);
+}
+
+body .ui-treetable .ui-treetable-thead > tr > th {
+  padding: 0.571em 0.857em;
+  border: 1px solid var(--table-border-color) !important;
+  font-weight: 700;
+  color: var(--table-th-color) !important;
+  background-color: var(--table-th-background) !important;
+}
+
+body .ui-treetable .ui-treetable-tbody > tr > td {
+  background-color: var(--table-td-background) !important;
+  border: 1px solid var(--table-border-color) !important;
+  color: var(--table-td-color);
+}
+
+body a {
+  color: var(--anchor) !important;
+  text-decoration: none;
+} 
+
+body .ui-table .ui-table-tbody > tr > td > a {
+  color: var(--anchor) !important;
+  text-decoration: none;
+}
+
+body .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link {
+  color: var(--anchor-leftmenu) !important;
+}
+
+.link {
+  color: var(--anchor) !important;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .smLeft {
+    text-align: left !important;
+  }
+  .smRight {
+    text-align: right !important;
+  }
+  .smCenter {
+    text-align: center !important;
+  }
+  /* .smSearchLeft {
+          text-align: left !important;
+      } */
+  .ui-dialog {
+    width: 100vw !important;
+  }
+  .sm100 {
+    width: 100% !important;
+  }
+  .autoChartTable {
+    max-height: 20em;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .smLeft {
+    text-align: left !important;
+  }
+  .smRight {
+    text-align: right !important;
+  }
+  .smCenter {
+    text-align: center !important;
+  }
+  .smSearchWidth {
+    width: 15em !important;
+  }
+  .autoChartTable {
+    max-height: 40em;
+  }
+}
+
+.mandatoryStar {
+  color: red !important;
+}
+
+/* Panel Header Class Overriding*/
+
+body .ui-panel .ui-panel-titlebar {
+  background-color: var(--pannel-title-background) !important;
+  border: 1px solid var(--pannel-border) !important;
+}
+
+/* Panel Content Class Overriding*/
+
+body .ui-panel .ui-panel-content {
+  border-bottom: 1px solid var(--pannel-border) !important;
+  border-left: 1px solid var(--pannel-border) !important;
+  border-right: 1px solid var(--pannel-border) !important;
+}
+
+body .ui-panel .ui-panel-titlebar {
+  color: var(--pannel-color) !important;
+}
+
+/* Panel Footer Class Overriding*/
+
+body .ui-panel .ui-panel-footer {
+  border: none !important;
+  border-bottom: 1px solid var(--pannel-border) !important;
+  border-left: 1px solid var(--pannel-border) !important;
+  border-right: 1px solid var(--pannel-border) !important;
+  background-color: var(--pannel-footer) !important;
+}
+
+/* Dialog Header Class Overriding*/
+
+body .ui-dialog .ui-dialog-titlebar {
+  background-color: var(--dialog-title-background) !important;
+  color: var(--dialog-title-color) !important;
+  border: 1px solid var(--dialog-title-color) !important;
+}
+
+body .ui-dialog .ui-dialog-footer {
+  background-color: var(--dialog-footer) !important;
+  color: var(--dialog-color) !important;
+}
+
+/* body .ui-tabview .ui-tabview-panels {
+  color: steelblue !important;
+} */
+
+.label {
+  color: var(--label) !important;
+}
+.labelMedium {
+  color: var(--label) !important;
+  font-size: 14px;
+}
+
+.modelHeight {
+  height: 400px;
+  overflow: auto;
+}
+
+.modelHeight200 {
+  height: 200px;
+  overflow: auto;
+}
+
+.modelHeight250 {
+  height: 250px;
+  overflow: auto;
+}
+
+.modelHeight300 {
+  height: 300px;
+  overflow: auto;
+}
+
+.modelHeight450 {
+  height: 450px;
+  overflow: auto;
+}
+
+.modelHeight460 {
+  height: 460px;
+  overflow: auto;
+}
+
+.modelHeight500 {
+  height: 500px;
+  overflow: auto;
+}
+
+.modelHeight550 {
+  height: 550px;
+  overflow: auto;
+}
+
+.modelHeight570 {
+  height: 570px;
+  overflow: auto;
+}
+
+.modelHeight600 {
+  height: 600px;
+  overflow: auto;
+}
+
+.modelHeight700 {
+  height: 700px;
+  overflow: auto;
+}
+
+body .ui-overlaypanel .ui-overlaypanel-content {
+  background-color: var(--overlaypanel-background) !important;
+}
+
+.blackbackground {
+  background-color: black !important;
+  border-color: black !important;
+}
+
+.ui-dialog-titlebar-close span {
+  display: none !important;
+}
+
+.buttonBg {
+  border: 1px solid var(--button-group-border);
+  background-color: var(--button-group-background);
+}
+.groupBg {
+  margin-bottom: 0.2em;
+  border: 1px solid var(--section-group-border);
+  background-color: var(--section-group-background);
+}
+
+.groupBg .label {
+  color: var(--section-group-label-color) !important;
+}
+
+.ui-table-caption {
+  background-color: var(--table-caption) !important;
+  border: solid 1px var(--table-border) !important;
+}
+
+.ui-table-caption .label {
+  color: var(--table-caption-label) !important;
+}
+
+/* Datepicker dates font opacity and color change */
+body .ui-datepicker table td > a,
+body .ui-datepicker table td > span {
+  color: black !important ;
+}
+body .ui-state-disabled,
+body .ui-widget:disabled {
+  opacity: 0.4 !important;
+}
+.required .label:after {
+  content: " *";
+  color: red;
+  font-weight: bold;
+}
+.ui-g {
+  padding-bottom: 0.2em;
+}
+
+body .ui-panel .ui-panel-content {
+  background-color: transparent !important;
+}
+
+body .ui-panel .ui-panel-footer {
+  background-color: var(--pannel-footer) !important;
+}
+
+button:disabled {
+  background-color: var(--button-disabled-background) !important;
+  color: var(--button-disabled-color) !important;
+  border: solid 1px var(--button-disabled-border) !important;
+  cursor: auto;
+}
+
+body .ui-dialog .ui-dialog-content {
+  background-color: var(--dialog-content) !important;
+  color: var(--label) !important;
+}
+
+body .ui-paginator {
+  background-color: var(--paginator-background) !important;
+  border: 1px solid var(--table-border) !important;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page {
+  color: var(--paginator-color) !important;
+}
+
+body .ui-paginator .ui-paginator-first,
+body .ui-paginator .ui-paginator-prev,
+body .ui-paginator .ui-paginator-next,
+body .ui-paginator .ui-paginator-last {
+  color: var(--paginator-color) !important;
+}
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active,
+body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active,
+body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active,
+body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active {
+  background-color: var(--tabview-tab-bgcolor) !important;
+  border: 1px solid var(--tabview-tab-bordercolor) !important;
+}
+body .ui-tabview .ui-tabview-panels {
+  background-color: var(--tabview-panel-bgcolor) !important;
+}
+.ui-tabview {
+  padding: 0px !important; /* added for alignment with header  */
+}

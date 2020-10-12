@@ -1,4 +1,4 @@
-import { SeriesOptionsType } from 'highcharts';
+// import { SeriesOptionsType } from 'highcharts';
 
 export enum ModuleNames {
     UserManagement = 'User Management',
@@ -113,7 +113,7 @@ export class GraphProperties {
     panelHeader?: string;
     graphType?: string;
     labels?: string[];
-    dataset?: SeriesOptionsType[];
+    // dataset?: SeriesOptionsType[];
     maxValue?: number;
     minValue?: number;
     graphTitle?: string;

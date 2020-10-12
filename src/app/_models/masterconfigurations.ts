@@ -1,4 +1,4 @@
-import { TreeNode } from '@angular/router/src/utils/tree';
+// import { TreeNode } from '@angular/router/src/utils/tree';
 
 export class MasterPages {
     id?: number;
