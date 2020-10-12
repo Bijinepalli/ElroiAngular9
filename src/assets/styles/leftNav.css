@@ -1,0 +1,84 @@
+.leftNav .ui-panelmenu .ui-panelmenu-header > a {
+  outline: 0 none;
+  /*border: 1px solid #007ad9;*/
+  border: 1px solid var(--panelmenu-header-bg);
+  /* #005b9f;*/
+  background-color: var(--panelmenu-header-bg);
+  /*background-color: #007ad9;*/
+  /* #005b9f;*/
+  color: #ffffff;
+  font-weight: normal;
+  width: 99%;
+}
+.leftNav .ui-panelmenu .ui-panelmenu-header.ui-state-active > a {
+  border: 1px solid var(--panelmenu-header-bg);
+  background-color: var(--panelmenu-header-bg);
+}
+.leftNav .ui-panelmenu .ui-panelmenu-header.ui-state-active > a:hover {
+  border: 1px solid var(--panelmenu-header-bg);
+  background-color: var(--panelmenu-header-bg);
+}
+.leftNav .ui-panelmenu .ui-panelmenu-header .ui-corner-top > a:hover {
+  border: 1px solid var(--panelmenu-header-bg);
+  background-color: var(--panelmenu-header-bg);
+}
+.leftNav .ui-panelmenu .ui-panelmenu-header:not(.ui-state-active) > a:hover {
+  outline: 0 none;
+  border: 1px solid var(--panelmenu-header-notactive-bg);
+  background-color: var(--panelmenu-header-notactive-bg);
+  color: var(--panelmenu-header-notactive-color) !important;
+}
+.leftNav
+  .ui-panelmenu
+  .ui-panelmenu-header:not(.ui-state-active)
+  > a:hover
+  .ui-panelmenu-icon {
+  color: var(--panelmenu-header-notactive-color) !important;
+}
+
+
+.leftNav .ui-menu {
+  padding: 0;
+  background-color: white;
+  border: 1px solid white;
+  width: 100%;
+}
+.leftNav .ui-panelmenu-header-link {
+  color: var(--panelmenu-header-link) !important;
+}
+.leftNav .ui-menu .ui-menuitem-link .ui-menuitem-text,
+body .ui-menubar .ui-menuitem-link .ui-menuitem-text,
+body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-text,
+body .ui-contextmenu .ui-menuitem-link .ui-menuitem-text,
+body .ui-megamenu .ui-menuitem-link .ui-menuitem-text,
+body .ui-slidemenu .ui-menuitem-link .ui-menuitem-text {
+  color: black;
+}
+
+.leftNav .ui-menu .ui-menuitem-link .ui-menuitem-icon,
+body .ui-menubar .ui-menuitem-link .ui-menuitem-icon,
+body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-icon,
+body .ui-contextmenu .ui-menuitem-link .ui-menuitem-icon,
+body .ui-megamenu .ui-menuitem-link .ui-menuitem-icon,
+body .ui-slidemenu .ui-menuitem-link .ui-menuitem-icon {
+  color: black;
+  margin-right: 0.5em;
+}
+
+.leftNav .ui-panelmenu .ui-panelmenu-header > a .ui-panelmenu-icon {
+  color: #ffffff !important;
+}
+
+.leftNav .ui-panelmenu .ui-panelmenu-content {
+  border: 0px !important;
+}
+
+.leftNav .ActiveRouteLink {
+  background: peachpuff;
+  width: 99%;
+}
+
+.leftNav .ActiveRouteLinkNext {
+  background: lavender;
+  width: 99%;
+}

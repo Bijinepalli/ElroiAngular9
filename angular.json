@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "elroiAngular9"
+  "defaultProject": "elroiAngular9",
+  "cli": {
+    "analytics": false
+  }
 }

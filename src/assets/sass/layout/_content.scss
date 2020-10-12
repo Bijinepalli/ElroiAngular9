@@ -1,0 +1,41 @@
+.layout-wrapper {
+
+    .layout-main {
+        .layout-content {
+            padding: 80px 1em 1em 1em;
+            position: absolute;
+            left:240px;
+            .ui-g > div {
+                padding: 0.4em;
+            }
+
+            .mainHeader {
+                font-size: 24px;
+                color: dodgerblue;
+                background-color: aliceblue;
+                border-right: 0px;
+                border-left: 0px;
+                box-shadow: 0 0px 5px 1px rgba(0, 0, 0, 0.3);
+                padding:0.4em!important;
+              }
+        }
+
+        .layout-main-mask {
+            display: none;
+        }
+
+        .layout-footer {
+            width: 100%;
+            padding: 1em 1.5em;
+            background-color: $footerBgColor;
+
+            .footer-text-right {
+                margin-top: .5em;
+
+                span {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
