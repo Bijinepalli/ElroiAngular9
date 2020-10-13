@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   appName: 'ELROI',
   envName: 'DEV',
-  serviceUrl: 'http://172.16.32.67/ElroiWebAPI/api/',
+  serviceUrl: 'http://172.16.32.240/ElroiWebAPI/api/',
   // serviceUrl: 'http://172.16.36.36/ElroiWebAPI/api/',
   // serviceUrl: 'https://localhost:44314/api/',
   // serviceUrl : 'http://172.16.32.96/ElroiWebApi/api/',
