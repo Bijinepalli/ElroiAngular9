@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MasterPages, LeftNavMenu, MasterDetailItem, AppSettings } from 'src/app/_models/masterconfigurations';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TreeNode } from 'primeng/api';
 import { ReturnValue } from 'src/app/_models/commoncore';
