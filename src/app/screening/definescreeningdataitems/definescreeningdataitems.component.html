@@ -1,0 +1,104 @@
+<div class="ui-g">
+    <div class="ui-g-12 ui-g-nopad" style="padding-top: .5em;">
+      <p-toolbar>
+        <div class="ui-toolbar-group-left">
+          Define New Screening Item
+        </div>
+        <div class="ui-toolbar-group-right">
+        </div>
+      </p-toolbar>
+    </div>
+  </div>
+  <ng-container *ngIf="isSecure">
+    <form [formGroup]="frmScreeningItem">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-lg-12 ui-sm-12 ui-g-nopad">
+          <p-panel header="Select Data Items">
+            <div class="ui-g">
+              <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
+                <div class="ui-lg-12 ui-sm-12">
+                  <span class="labelMedium"><b>Categories</b></span>
+                </div>
+                <div class="ui-lg-12 ui-sm-12">
+                  <p-listbox [options]="lstCategories" formControlName="selectedCategory" optionLabel="label"
+                    [listStyle]="{'max-height':'200px','min-height':'200px' }" [style]="{'width':'100%'}" filter="filter"
+                    (onChange)="lstCategory_Change($event)"></p-listbox>
+                </div>
+              </div>
+              <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
+                <div class="ui-lg-12 ui-sm-12">
+                  <span class="labelMedium"><b>Items</b></span>
+                </div>
+                <div class="ui-lg-12 ui-sm-12">
+                  <p-listbox [options]="lstItems" formControlName="selectedItem" optionLabel="label"
+                    [listStyle]="{'max-height':'200px','min-height':'200px'}" [style]="{'width':'100%'}" filter="filter"
+                    (onChange)="lstItem_Change($event)"></p-listbox>
+                </div>
+              </div>
+            </div>
+            <p-footer>
+              <button pButton type="button" label="Add Item" class="ui-button-raised"
+                (click)="btnAddItem_Click()"></button>
+            </p-footer>
+          </p-panel>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-lg-12 ui-sm-12 ui-g-nopad">
+          <p-panel header="Build Formula">
+            <div class="ui-g">
+              <div class="ui-g-8 ui-lg-8 ui-md-8 ui-sm-12">
+                <textarea rows="7" cols="30" pInputTextarea style="width: 100%;height: 100%;"
+                  formControlName="ctrlDataItem" (keypress)="ctrlKeyPress($event,0)"></textarea>
+              </div>
+              <div class="ui-g-4 ui-lg-4 ui-md-4 ui-sm-12" style="text-align: center;">
+                <div class="ui-g-12 ui-g-nopad">
+                  <div class="ui-g-6">
+                    <button pButton type="button" label="+" style="width: 60px" class="ui-button-raised"
+                      (click)="btnAddOperator_Click(&#39; + &#39;)"></button>
+                  </div>
+                  <div class="ui-g-6">
+                    <button pButton type="button" label="-" style="width: 60px" class="ui-button-raised"
+                      (click)="btnAddOperator_Click(&#39; - &#39;)"></button>
+                  </div>
+                  <div class="ui-g-6">
+                    <button pButton type="button" label="*" style="width: 60px" class="ui-button-raised"
+                      (click)="btnAddOperator_Click(&#39; * &#39;)"></button>
+                  </div>
+                  <div class="ui-g-6">
+                    <button pButton type="button" label="/" style="width: 60px" class="ui-button-raised"
+                      (click)="btnAddOperator_Click(&#39; / &#39;)"></button>
+                  </div>
+                  <div class="ui-g-6">
+                    <button pButton type="button" label="(" style="width: 60px" class="ui-button-raised ui-button-warning"
+                      (click)="btnAddOperator_Click(&#39; ( &#39;)"></button>
+                  </div>
+                  <div class="ui-g-6">
+                    <button pButton type="button" label=")" style="width: 60px" class="ui-button-raised ui-button-warning"
+                      (click)="btnAddOperator_Click(&#39; ) &#39;)"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-12 ui-sm-12 ui-md-12">
+          <div class="ui-g-12 ui-sm-12 ui-md-12 ui-g-nopad">
+            Item Name
+          </div>
+          <div class="ui-g-12 ui-sm-12 ui-md-12 ui-g-nopad">
+            <input id="input" type="text" size="30" pInputText formControlName="ctrlItemName"
+              (keypress)="ctrlKeyPress($event,1)">&nbsp;
+            <button pButton type="button" label="Save the item" class="ui-button-raised ui-button-success"
+              [disabled]="hasFormErrors()" (click)="btnSaveItem_Click()"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <p-toast [style]="{marginTop: '80px'}" position="bottom-right" key="saveSuccess" appendTo="body"></p-toast>
+  <p-toast [style]="{marginTop: '80px'}" position="bottom-right" key="saveError" appendTo="body"></p-toast>
+  <p-progressSpinner *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" class="positionMiddle" strokeWidth="4">
+  </p-progressSpinner>

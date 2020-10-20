@@ -21,6 +21,7 @@ import { RoleaccessrightsService } from './_services/roleaccessrights/roleaccess
 import { CommoncoreService } from './_services/common/commoncore.service';
 import { LoggerService } from './_services/log/logger.service';
 import { LogPublishersService } from './_services/log/log-publishers.service';
+import { ScreeningModule } from './screening/screening.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { LogPublishersService } from './_services/log/log-publishers.service';
     LoginComponent,
     MasterComponent,
     DashboardComponent,
-    SafePipe
+    SafePipe,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ import { LogPublishersService } from './_services/log/log-publishers.service';
     PrimenguiModule,
     OverlayPanelModule,
     AppRoutingModule,
+    ScreeningModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

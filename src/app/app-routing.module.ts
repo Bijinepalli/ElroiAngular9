@@ -25,6 +25,11 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: menupath + 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationService] },
+      {
+        path: screeningpath,
+        loadChildren: () => import('./screening/screening.module').then(mod => mod.ScreeningModule),
+        canLoad: [AuthenticationService]
+      },
       // {
       //   path: userpath,
       //   loadChildren: () => import('./usermanagement/user.module').then(mod => mod.UserModule),
