@@ -1,0 +1,70 @@
+<!-- <div class="ui-g">
+  <div class="ui-g-12">
+    <p-toolbar>
+      <div class="ui-toolbar-group-left">
+        Dashboard
+      </div>
+      <div class="ui-toolbar-group-right">
+      </div>
+    </p-toolbar>
+  </div>
+  <div class="ui-g-12 ui-md-12">
+    <p>ELROI provides a unique blend of fundamental,technical and quantitative analysis to address the two most
+      critical
+      areas of portfolio management -- <strong>stock selection</strong> and <strong>portfolio selection</strong>.
+      Specifically this portal aids in and
+      allows you to:
+    </p>
+    <ul>
+      <li>Analyze stocks and portfolios.</li>
+      <li>Review stock ideas,screen investment ideas and construct and analyze portfolio strategies.</li>
+      <li>Compare stocks and inspect ratings and targets on over 4000 securities in a quick,user-friendly format
+        featuring
+        revolutionary screen navigation from within your browser.</li>
+    </ul>
+  </div>
+  <div class="ui-g-12 ui-md-6">
+    <p>ELROI provides a unique blend of fundamental,technical and quantitative analysis to address the two most
+      critical
+      areas of portfolio management -- <strong>stock selection</strong> and <strong>portfolio selection</strong>.
+      Specifically this portal aids in and
+      allows you to:
+    </p>
+    <ul>
+      <li>Analyze stocks and portfolios.</li>
+      <li>Review stock ideas,screen investment ideas and construct and analyze portfolio strategies.</li>
+      <li>Compare stocks and inspect ratings and targets on over 4000 securities in a quick,user-friendly format
+        featuring
+        revolutionary screen navigation from within your browser.</li>
+    </ul>
+  </div>
+  <div class="ui-g-12 ui-md-6">
+    <p>ELROI provides a unique blend of fundamental,technical and quantitative analysis to address the two most
+      critical
+      areas of portfolio management -- <strong>stock selection</strong> and <strong>portfolio selection</strong>.
+      Specifically this portal aids in and
+      allows you to:
+    </p>
+    <ul>
+      <li>Analyze stocks and portfolios.</li>
+      <li>Review stock ideas,screen investment ideas and construct and analyze portfolio strategies.</li>
+      <li>Compare stocks and inspect ratings and targets on over 4000 securities in a quick,user-friendly format
+        featuring
+        revolutionary screen navigation from within your browser.</li>
+    </ul>
+  </div>
+</div> -->
+<div class="ui-g">
+    <div class="ui-g-12">
+      <p-dropdown [options]="lstSelectedCompanies" [(ngModel)]="selectedStock" optionLabel="companyName" [filter]="true"
+        [virtualScroll]="true" itemSize="30" [style]="{'width':'300px'}" (onChange)="setUrl()" filterBy="label,value.tickerSymbol"></p-dropdown>
+    </div>
+  
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12" *ngIf="selectedStock">
+  
+      <!--<iframe frameBorder='0' scrolling='no' width='1500' height='420' src='http://api.stockdio.com/visualization/financial/charts/v1/HistoricalPrices?app-key=D3309DD46F5348BBB6A3B793F0C1985B&symbol={{stock}}&days=365&width=1500&height=420'></iframe>-->
+      <iframe frameBorder='0' scrolling='no' width='1500' height='420' [src]='url | safe'></iframe>
+    </div>
+  </div>

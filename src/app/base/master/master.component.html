@@ -1,0 +1,134 @@
+<div class="ui-g" id="header">
+    <div class="ui-g-12 topBar" id="sidegutter">
+      <div class="ui-g-11 ui-md-9 ui-lg-10 ui-xl-10" align="left">
+        <img src="assets/images/logos/LogoVer09172013.gif">
+      </div>
+      <div class="ui-g-1 ui-md-3 ui-lg-2 ui-xl-2" style="text-align: right;">
+        <!--<button pButton [icon]="themeIcon" [pTooltip]="themeTip" tooltipPosition="right" (click)="changeTheme()"
+          class="ui-button-raised ui-button-warning topbar-button" style="padding-right:0px"></button>&nbsp;-->
+        <p-splitButton label="Theme" [icon]="themeIcon" [pTooltip]="themeTip" tooltipPosition="left" [model]="lstThemes"
+          appendTo="body">
+        </p-splitButton>&nbsp;
+        <button pButton icon="fa fa-power-off" pTooltip="Logout" tooltipPosition="right" (click)="logout()"
+          class="ui-button-raised ui-button-danger topbar-button" style="padding-right:0px"></button>
+      </div>
+    </div>
+  
+    <div class="ui-g-12 topBar" id="minigutter">
+      <div class="ui-g-1">
+        <span class="fa fa-bars fa-2x" (click)="OpenMenu()" style="cursor: pointer;"></span>
+      </div>
+      <div class="ui-g-6" align="left">
+        <img src="assets/images/logos/LogoVer09172013.gif">
+      </div>
+      <div class="ui-g-4">
+        <p-splitButton label="Theme" [icon]="themeIcon" [pTooltip]="themeTip" tooltipPosition="left" [model]="lstThemes"
+          appendTo="body">
+        </p-splitButton>
+      </div>
+      <div class="ui-g-1" align="right">
+        <button pButton icon="fa fa-power-off" pTooltip="Logout" tooltipPosition="right" (click)="logout()"
+          class="ui-button-raised ui-button-danger topbar-button" style="padding-right:0px"></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ui-g ui-g-nopad" id="sideMenu">
+    <div class="ui-g-2 ui-g-nopad" id="sidegutter">
+      <div id="sidenav">
+        <header class="logo-env">
+          <div style="width:100%;height:100%;padding:10px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);">
+            <div class="logo">
+              <div style="color:crimson;">
+                {{fullName}}&nbsp;<b style="color:dodgerblue;">({{BuildType}})</b>
+              </div>
+              <div style="font-size:14px;color:black;">
+                {{loginTime}}
+                <div class="settings-icon" *ngIf="settings">
+                  <p-splitButton icon="fa fa-cog" [model]="settings" styleClass="ui-button-raised ui-button-secondary"
+                    appendTo="body"></p-splitButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <ng-container *ngIf="menuItems" style="width: 98%;">
+          <p-panelMenu #bigMenu2 [model]="menuItems" class="leftNav" [multiple]="false"></p-panelMenu>
+        </ng-container>
+      </div>
+    </div>
+    <div id="minigutter">
+      <p-sidebar [(visible)]="visibleSidebar" [baseZIndex]="10000" [showCloseIcon]="false"
+        [style]="{padding:'0px', top:'60px'}">
+        <header class="logo-env">
+          <div style="width:100%;height:100%;padding:10px;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);">
+            <div class="logo">
+              <div style="color:crimson;">
+                {{fullName}}&nbsp;<b style="color:dodgerblue;">({{BuildType}})</b>
+              </div>
+              <div style="font-size:14px;color:black;">
+                {{loginTime}}
+                <div class="settings-icon" *ngIf="settings">
+                  <p-splitButton icon="fa fa-cog" [model]="settings" styleClass="ui-button-raised ui-button-info">
+                  </p-splitButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <ng-container *ngIf="menuItems">
+          <p-panelMenu #smallMenu [model]="menuItems" class="leftNav" [multiple]="false"></p-panelMenu>
+        </ng-container>
+      </p-sidebar>
+    </div>
+  
+    <div id="content-body" class="ui-g-10">
+      <div class="ui-g-12" style="min-height: 800px;height: 100%;">
+        <router-outlet *ngIf="ShowBody"></router-outlet>
+      </div>
+    </div>
+  
+    <!-- <app-createuser *ngIf="changeProfileDialog" [userObject]="selectedUser" [userid]="userid"
+      (dialogEvent)="changeProfileClose($event)">
+    </app-createuser>-->
+  
+    <app-changepassword *ngIf="changePasswordDialog" [userObject]="selectedUser"
+      (dialogEvent)="changePasswordClose($event)">
+    </app-changepassword>
+  
+  </div>
+  
+  <div class="ui-g">
+    <div class="ui-g-12" style="color: navy; position:fixed;bottom: 0px;text-align: center;background: #ffff;">
+      © Copyright Ebix Consulting
+    </div>
+  </div>
+  <p-dialog [(visible)]="showExpireWindow" [modal]="true" [blockScroll]="true" [style]="{width: '500px'}">
+    <p-header>
+      JWT Token Expiration
+    </p-header>
+    <div class="ui-g">
+      <div class="ui-g-3">
+        <img src="../../../assets/images/sessionexpire.png" width="100px">
+      </div>
+      <div class="ui-g-9" *ngIf="!tokenExpired">
+        <label class="label">
+          Your JWT Token is going to expire in <b>{{expireMinutes}}</b> minutes, so we recommened you to click on continue
+          to
+          avoid
+          intereptions in the application.<br>
+          <b>Note</b>: If you click on contiune there will be no intereptions for the next one hour.</label>
+      </div>
+      <div class="ui-g-9" style="padding-top: 25px;" *ngIf="tokenExpired">
+        <label class="label"> Your JWT Token is Expired, please click on logout to continue.</label>
+      </div>
+    </div>
+    <p-footer>
+      <button *ngIf="!this.tokenExpired" pButton label="Continue" (click)="contiune()"
+        class="ui-button-raised ui-button-success topbar-button" style="padding-right:0px"></button>&nbsp;
+      <button pButton label="Logout" (click)="logout()" class="ui-button-raised ui-button-danger topbar-button"
+        style="padding-right:0px"></button>
+    </p-footer>
+  </p-dialog>
+  <!-- <p-progressSpinner class="positionMiddle" *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" strokeWidth="4"
+    fill="#EEEEEE"></p-progressSpinner> -->
