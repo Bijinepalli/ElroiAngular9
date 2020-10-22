@@ -1,11 +1,12 @@
-<div class="ui-g">
-    <div class="ui-g-12">
-      <p-dropdown [options]="lstSelectedCompanies" [(ngModel)]="selectedStock" optionLabel="companyName" [filter]="true"
-        [virtualScroll]="true" itemSize="30" [style]="{'width':'300px'}" (onChange)="setUrl()" filterBy="label,value.tickerSymbol"></p-dropdown>
-    </div>
+<div class="p-grid">
+  <div class="p-col-12">
+    <p-dropdown [options]="lstSelectedCompanies" [(ngModel)]="selectedStock" optionLabel="companyName" [filter]="true"
+      [virtualScroll]="true" itemSize="30" [style]="{'width':'300px'}" (onChange)="setUrl()"
+      filterBy="label,value.tickerSymbol"></p-dropdown>
   </div>
-  <div class="ui-g">
-    <div class="ui-g-12" *ngIf="selectedStock">
-        <iframe frameBorder='0' scrolling='no' width='1500' height='420' [src]='url | safe'></iframe>
-    </div>
+</div>
+<div class="p-grid">
+  <div class="p-col-12" *ngIf="selectedStock">
+      <iframe frameBorder='0' scrolling='no' width='1500' height='420' [src]='url | safe'></iframe>
   </div>
+</div> 

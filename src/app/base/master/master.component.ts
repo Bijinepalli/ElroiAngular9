@@ -135,7 +135,7 @@ export class MasterComponent implements OnInit, OnDestroy {
 
   getUserDetails() {
     this.fullName = 'Hello ' + sessionStorage.getItem(this.envKey.toString() + 'fullName');
-    this.loginTime = this.datePipe.transform(Date(), 'MMMM dd, yyyy');
+    this.loginTime = this.datePipe.transform(Date(), 'MMM dd, yyyy');
     this.settings = [
       {
         label: 'Change Password',
