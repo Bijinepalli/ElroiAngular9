@@ -9,7 +9,6 @@ import { RoleaccessrightsService } from 'src/app/_services/roleaccessrights/role
 import { DataService } from 'src/app/_services/data/data.service';
 import { CommoncoreService } from 'src/app/_services/common/commoncore.service';
 import { PageRoutes } from 'src/app/_models/commoncore';
-import { ErrorLogService } from 'src/app/_core/_interceptors/errors-handler';
 import { ThemeService } from 'src/app/_services/theme/theme.service';
 import * as jwt_decode from 'jwt-decode';
 import { Authenticate } from 'src/app/_models/authentication';
@@ -25,7 +24,6 @@ import { AuthenticationService } from 'src/app/_services/authentication/authenti
 })
 export class MasterComponent implements OnInit, OnDestroy {
 
-  // @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('bigMenu2') bigMenu2: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
 
@@ -75,7 +73,6 @@ export class MasterComponent implements OnInit, OnDestroy {
     private accessSvc: RoleaccessrightsService,
     private dataSvc: DataService,
     private commonSvc: CommoncoreService,
-    private errorLogSvc: ErrorLogService,
     private themeSvc: ThemeService,
     private logger: LoggerService,
     private authSvc: AuthenticationService,
@@ -170,7 +167,6 @@ export class MasterComponent implements OnInit, OnDestroy {
   }
 
   getInvalidDates() {
-    // try {
     this.showSpinner = true;
     this.commonSvc.getInvalidDates().subscribe((data) => {
       let invalidDates: any[];
@@ -180,35 +176,18 @@ export class MasterComponent implements OnInit, OnDestroy {
           invalidDates = data.map(m => m && m !== null && m.invaliddate ? this.convertToJSONDate(m.invaliddate.toString()) : '');
         }
       } else {
-        // throw new Error('Data Not Found 3');
       }
       this.dataSvc.changeInvalidDates(invalidDates);
       this.showSpinner = false;
 
       this.getNavItems();
-      // throw new Error('Data Not Found 2');
-      // Observable.throw('Data Not Found 1');
-      // throw new Error('Data Not Found 1');
-      // throw throwError('Data Not Found 1');
     },
       (error) => {
         this.showSpinner = false;
-        // console.log(error);
-        // throw new Error(error);
       },
       () => {
-        // this.getNavItems();
       }
     );
-    // throw new Error('Data Not Found 1');
-    // } catch (e) {
-    //   this.showSpinner = false;
-    //   console.log(e);
-    //   // console.log(this.errorLogSvc);
-    //   this.errorLogSvc.logError(e);
-    //   throw new Error(e);
-    // }
-
   }
 
   convertToJSONDate(strDate: string) {
@@ -220,7 +199,6 @@ export class MasterComponent implements OnInit, OnDestroy {
   }
 
   getNavItems() {
-    // try {
     this.showSpinner = true;
     if (sessionStorage.getItem(this.envKey.toString() + 'UserRole') &&
       sessionStorage.getItem(this.envKey.toString() + 'UserRole') !== null) {
@@ -239,12 +217,8 @@ export class MasterComponent implements OnInit, OnDestroy {
           }
         );
     }
-    // } catch (e) {
-    //   this.showSpinner = false;
-    // }
   }
   getPageSections() {
-    // try {
     this.showSpinner = true;
     if (sessionStorage.getItem(this.envKey.toString() + 'UserRole') &&
       sessionStorage.getItem(this.envKey.toString() + 'UserRole') !== null) {
@@ -262,9 +236,6 @@ export class MasterComponent implements OnInit, OnDestroy {
           }
         );
     }
-    // } catch (e) {
-    //   this.showSpinner = false;
-    // }
   }
 
   buildMenuItems(data: MenuItem[]) {
@@ -336,9 +307,7 @@ export class MasterComponent implements OnInit, OnDestroy {
       }
     }
     this.dataSvc.changePagePath(queryParamsNew.Id);
-    // this.router.navigate([path], { skipLocationChange: false });
     this.router.navigate([path], { queryParams: queryParamsNew, skipLocationChange: false });
-    // this.router.navigate([path], { queryParams: queryParamsNew, skipLocationChange: true });
     this.selectInitialMenuItemBasedOnUrl(queryParamsNew.Id);
     this.visibleSidebar = false;
   }
@@ -364,7 +333,6 @@ export class MasterComponent implements OnInit, OnDestroy {
                   if (smm.queryParams && smm.queryParams !== null) {
                     if (smm.queryParams.id === splitVals[0] + '@' + splitVals[1]) {
                       smm.expanded = true;
-                      // smm.styleClass = 'ActiveRouteLinkNext';
                       if (smm.items && smm.items !== null && smm.items.length > 0) {
                       } else {
                         smm.styleClass = 'ActiveRouteLink';
@@ -421,7 +389,6 @@ export class MasterComponent implements OnInit, OnDestroy {
                   if (smm.queryParams && smm.queryParams !== null) {
                     if (smm.queryParams.id === splitVals[0] + '@' + splitVals[1]) {
                       smm.expanded = true;
-                      // smm.styleClass = 'ActiveRouteLinkNext';
                       if (smm.items && smm.items !== null && smm.items.length > 0) {
                       } else {
                         smm.styleClass = 'ActiveRouteLink';
@@ -595,23 +562,6 @@ export class MasterComponent implements OnInit, OnDestroy {
           } else {
             this.logger.debug(this.componentName, 'contiune', 'Login Success! JWT Token Regenerated');
             sessionStorage.setItem(this.envKey.toString() + 'jwtloginToken', data.token);
-
-            // sessionStorage.setItem(this.envKey.toString() + 'UserRole', data.role.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'fullName', data.fullName.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'firmName', data.firmName.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'organization', data.organization.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'userId', data.userId.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'isInternal', data.isInternal.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'loginId', data.loginId.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'pagination', 'true');
-            // sessionStorage.setItem(this.envKey.toString() + 'filter', 'true');
-            // sessionStorage.setItem(this.envKey.toString() + 'applicationSettings',
-            //   JSON.stringify({ appRegion: 'Test', userId: data.fullName.toString() }));
-            // this.dataSvc.changeLoginId(data.loginId.toString());
-            // sessionStorage.setItem(this.envKey.toString() + 'theme', 'light');
-
-            // this.themeSvc.setLightTheme();
-            // this.router.navigate([PageRoutes.Dashboard], { skipLocationChange: false });
           }
         }
         this.showExpireWindow = false;

@@ -4,8 +4,6 @@
         <img src="assets/images/logos/LogoVer09172013.gif">
       </div>
       <div class="ui-g-1 ui-md-3 ui-lg-2 ui-xl-2" style="text-align: right;">
-        <!--<button pButton [icon]="themeIcon" [pTooltip]="themeTip" tooltipPosition="right" (click)="changeTheme()"
-          class="ui-button-raised ui-button-warning topbar-button" style="padding-right:0px"></button>&nbsp;-->
         <p-splitButton label="Theme" [icon]="themeIcon" [pTooltip]="themeTip" tooltipPosition="left" [model]="lstThemes"
           appendTo="body">
         </p-splitButton>&nbsp;
@@ -88,10 +86,6 @@
       </div>
     </div>
   
-    <!-- <app-createuser *ngIf="changeProfileDialog" [userObject]="selectedUser" [userid]="userid"
-      (dialogEvent)="changeProfileClose($event)">
-    </app-createuser>-->
-  
     <app-changepassword *ngIf="changePasswordDialog" [userObject]="selectedUser"
       (dialogEvent)="changePasswordClose($event)">
     </app-changepassword>
@@ -130,5 +124,3 @@
         style="padding-right:0px"></button>
     </p-footer>
   </p-dialog>
-  <!-- <p-progressSpinner class="positionMiddle" *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" strokeWidth="4"
-    fill="#EEEEEE"></p-progressSpinner> -->
