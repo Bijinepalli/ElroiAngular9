@@ -21,6 +21,11 @@ import { RoleaccessrightsService } from './_services/roleaccessrights/roleaccess
 import { CommoncoreService } from './_services/common/commoncore.service';
 import { LoggerService } from './_services/log/logger.service';
 import { LogPublishersService } from './_services/log/log-publishers.service';
+
+import { CreateuserComponent } from './usermanagement/createuser/createuser.component';
+
+import { CommonCoreModule } from './common/common.module';
+import { UserModule } from './usermanagement/user.module';
 import { ScreeningModule } from './screening/screening.module';
 
 @NgModule({
@@ -31,6 +36,7 @@ import { ScreeningModule } from './screening/screening.module';
     MasterComponent,
     DashboardComponent,
     SafePipe,
+    CreateuserComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +45,8 @@ import { ScreeningModule } from './screening/screening.module';
     PrimenguiModule,
     OverlayPanelModule,
     AppRoutingModule,
+    CommonCoreModule,
+    UserModule,
     ScreeningModule
   ],
   schemas: [

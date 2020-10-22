@@ -1,0 +1,157 @@
+<p-dialog visible="true" [responsive]="true" blockScroll="true" showEffect="fade" [closable]="true" class="dialogWidth"
+    [modal]="true" [style]="{width: '800px'}">
+    <p-header>
+        {{userHeader}}
+    </p-header>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div [innerHTML]="errMsg" *ngIf="errMsg!==undefined && errMsg!==null && errMsg!==''" class="errorBlock">
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="frmUser" *ngIf="frmUser">
+        <div class="p-grid">
+            <div class="p-col-12" style="text-align:left" style="color:red;">
+                * marked fields are required to save the data.
+            </div>
+        </div>
+        <p-panel header="Profile Information">
+            <div class="p-grid">
+                <div class="p-col-12 p-lg-12 p-md-6 p-sm-12" *ngIf="showSections">
+                    Is Internal User
+                    <br>
+                    <div style="height:5px"></div>
+                    <p-inputSwitch formControlName="isInternalUser" (onChange)="internalUserChange($event)">
+                    </p-inputSwitch>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    First Name <span class="mandatoryStar">* </span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" maxlength="25" pattern="^[a-zA-Z\040\047\055\056]*$" pInputText
+                        style="width:100%" placeholder="First Name" formControlName="frmFirstName" appendTo="body"
+                        pToolTip="Employee's first name">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Last Name <span class="mandatoryStar">* </span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" maxlength="30" pattern="^[a-zA-Z\040\047\055\056]*$" pInputText
+                        style="width:100%" placeholder="Last Name" formControlName="frmLastName" appendTo="body"
+                        pToolTip="Employee's last name">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Country/Region <span class="mandatoryStar">* </span>
+                    <div style="height:5px"></div>
+                    <p-dropdown appendTo="body" [options]="lstCountries" placeholder="Select Country"
+                        formControlName="frmCountry" pToolTip="User's Country" [style]="{'width':'100%'}"
+                        (onChange)="onCountryChange()"></p-dropdown>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    State (in United States)
+                    <div style="height:5px"></div>
+                    <p-dropdown appendTo="body" [options]="lstStates" placeholder="Select State"
+                        formControlName="frmState" pToolTip="User's State" [style]="{'width':'100%'}"></p-dropdown>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Zip Code <span class="mandatoryStar">*</span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" pInputText style="width:100%" placeholder="Zip Code" formControlName="frmZipCode"
+                        appendTo="body" pToolTip="User's Zip Code" minlength="4" maxlength="10">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6"></div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Phone <span class="mandatoryStar">*</span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" pInputText style="width:100%" placeholder="Phone" formControlName="frmPhone"
+                        appendTo="body" pToolTip="User's Phone number" minlength="10" maxlength="15">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Fax
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" pInputText style="width:100%" placeholder="Fax" formControlName="frmFax"
+                        appendTo="body" pToolTip="User's Fax number" minlength="10" maxlength="15">
+                </div>
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    Gender <span class="mandatoryStar">*</span>
+                    <br>
+                    <p-radioButton name="gender" value="M" label="Male" formControlName="frmSelectedGender">
+                    </p-radioButton>
+                    &nbsp;
+                    <p-radioButton name="gender" value="F" label="Female" formControlName="frmSelectedGender">
+                    </p-radioButton>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Occupation
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" maxlength="30" pInputText style="width:100%" placeholder="Occupation"
+                        formControlName="frmOccupation" appendTo="body" pToolTip="User's Occupation">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Firm Name
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" maxlength="30" pInputText style="width:100%" placeholder="Firm Name"
+                        formControlName="frmFirmName" appendTo="body" pToolTip="User's Firm Name">
+                </div>
+            </div>
+        </p-panel>
+        <p-panel header="Account Information">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    Email Address <span class="mandatoryStar">* </span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" maxlength="55"
+                        pattern="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                        pInputText style="width:50%" placeholder="Email Address" formControlName="frmEmailAddress"
+                        appendTo="body" pToolTip="Employee's email address.">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6" *ngIf="showSections" [ngClass]="{'displayNone':isInternalUser}">
+                    Password <span class="mandatoryStar">* </span>
+                    <input type="password" pInputText placeholder="Password" formControlName="frmPassword"
+                        value="password" style="color: black; background-color: white;width:100%;">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6" *ngIf="showSections" [ngClass]="{'displayNone':isInternalUser }">
+                    Confirm Password <span class="mandatoryStar">* </span>
+                    <input id="confirmpassword" type="password" pInputText placeholder="Confirm Password"
+                        formControlName="frmConfirmPassword" value="Confirm Password"
+                        style="color: black; background-color: white;width:100%;">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Secret Question <span class="mandatoryStar">* </span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" maxlength="25" pInputText style="width:100%" placeholder="Secret Question"
+                        formControlName="frmSecretQ" appendTo="body" pToolTip="Employee's first name">
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    Answer to Secret Question <span class="mandatoryStar">* </span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <input type="text" maxlength="25" pInputText style="width:100%"
+                        placeholder="Answer to Secret Question" formControlName="frmAnswerSecretQ" appendTo="body"
+                        pToolTip="Employee's first name">
+                </div>
+            </div>
+        </p-panel>
+    </form>
+    <p-footer>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12">
+                <div class="p-col-12 p-md-12" align="right">
+                    <button pButton [label]="btnSave" class="ui-button-success" (click)="saveUser()"
+                        [disabled]="hasFormErrorsUser()"></button> &nbsp;
+                    <button pButton label="Cancel" (click)="cancelUser()" class="ui-button-danger"></button>
+                </div>
+            </div>
+        </div>
+    </p-footer>
+</p-dialog>
+<p-progressSpinner class="positionMiddle" *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" strokeWidth="4"
+    fill="#EEEEEE">
+</p-progressSpinner>

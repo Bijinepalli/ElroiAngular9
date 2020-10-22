@@ -1,0 +1,13 @@
+<div class="ui-message ui-messages-error fielderrorMsg" *ngIf="fieldErrors(field)">
+    <div *ngIf="fieldErrors(field).required" style="padding:5px;">{{ nicename}} is required.</div>
+    <div *ngIf="fieldErrors(field).minlength" style="padding:5px;">{{ nicename}} must atleast be {{
+      fieldErrors(field).minlength.requiredLength }} characters.</div>
+    <div *ngIf="fieldErrors(field).maxlength" style="padding:5px;">{{ nicename}} must not exceed {{
+      fieldErrors(field).maxlength.requiredLength }} characters.</div>
+    <div *ngIf="fieldErrors(field).strong" style="padding:5px;">{{ nicename}} should contain atleast 3 out of 4 of
+        the following – Upper case, Lower case, Numeric or Symbols.</div>
+    <div *ngIf="fieldErrors(field).validateEqualPassword" style="padding:5px;">Confirm Password mismatches Password.
+    </div>
+    <div *ngIf="fieldErrors(field).validateEqualConfirmPassword" style="padding:5px;">Password mismatches Confirm
+        Password.</div>
+</div>
