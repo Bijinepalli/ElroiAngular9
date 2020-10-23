@@ -1,36 +1,29 @@
 <p-toast position="center" key="errorHandlerMessages" styleClass="alertToast" [style]="{width:'70em'}" [modal]="true"
   [baseZIndex]="50000" [closable]="false">
   <ng-template let-message pTemplate="message">
-    <div class="ui-g" style="padding:0em;background-color: white; border-radius: 1em;">
-      <div class="ui-lg-12 alertHeader" style="font-size: 16px; color:red;padding: 0 !important;">
-        <!--<div class="ui-g-12 ui-md-2" align="center">
-          <i class="pi pi-exclamation-triangle" style="font-size: 1.9em;margin:2px;"></i>
-        </div>-->
-        <div class="ui-lg-12 ui-md-12" align="left"
+    <div class="p-grid" style="padding:0em;background-color: white; border-radius: 1em;">
+      <div class="p-lg-12 alertHeader" style="font-size: 16px; color:red;padding: 0 !important;">
+        <div class="p-lg-12 p-md-12" align="left"
           style="border-bottom: solid 1px pink;;background-color:#f8b7bd;border-top-left-radius:0.5em;border-top-right-radius:0.5em;padding:1em">
           <h4 style="margin:1px;" *ngIf="message.summary">
             <label [innerHTML]="message.summary | sanitizeHtmlString" style="font-size: 16px;"></label>
           </h4>
         </div>
       </div>
-      <div class="ui-g-12 ui-g-nopad" align="left" *ngIf="message.detail">
-        <div class="ui-g-2" align="center">
+      <div class="p-col-12 p-col-nogutter" align="left" *ngIf="message.detail">
+        <div class="p-col-2" align="center">
           <i class="pi pi-exclamation-triangle" style="font-size: 8em;margin:0px;color:red"></i>
         </div>
-        <!-- <p-scrollPanel [style]="{width: '100%', height: '100px'}"> -->
-        <div class="ui-g-10" style="padding:1.5em;max-height:15em;overflow:auto">
+        <div class="p-col-10" style="padding:1.5em;max-height:15em;overflow:auto">
           <label [innerHTML]="message.detail | sanitizeHtmlString"></label>
         </div>
-        <!-- </p-scrollPanel> -->
       </div>
-      <div class="ui-g-12 ui-g-nopad" align="left" *ngIf="message.detail"
+      <div class="p-col-12 p-col-nogutter" align="left" *ngIf="message.detail"
         style="border-top: solid 1px pink;;background-color:#f8b7bd;border-bottom-left-radius:0.5em;border-bottom-right-radius:0.5em;padding:0.3em">
-
-        <div class="ui-g-12" align="right">
-          <button pButton type="button" label="Mail" class="ui-button-info"></button>&nbsp;
-          <button pButton type="button" label="Close" class="ui-button-danger" (click)="onRejectError()"></button>
+        <div class="p-col-12" align="right">
+          <button pButton type="button" label="Mail" class="p-button-info"></button>&nbsp;
+          <button pButton type="button" label="Close" class="p-button-danger" (click)="onRejectError()"></button>
         </div>
-        <!-- </p-scrollPanel> -->
       </div>
     </div>
   </ng-template>
@@ -38,35 +31,30 @@
 <p-toast position="center" key="alert" (onClose)="onReject()" styleClass="alertToast" [modal]="true" [baseZIndex]="5000"
   appendTo="body">
   <ng-template let-message pTemplate="message">
-    <div class="ui-g" style="padding:0em;background-color: white; border-radius: 1em;">
-      <div class="ui-lg-12 alertHeader" style="font-size: 16px; color:red;padding: 0 !important;">
-        <!--<div class="ui-g-12 ui-md-2" align="center">
-          <i class="pi pi-exclamation-triangle" style="font-size: 1.9em;margin:2px;"></i>
-        </div>-->
-        <div class="ui-lg-12 ui-md-12" align="left"
+    <div class="p-grid" style="padding:0em;background-color: white; border-radius: 1em;">
+      <div class="p-lg-12 alertHeader" style="font-size: 16px; color:red;padding: 0 !important;">
+        <div class="p-lg-12 p-md-12" align="left"
           style="border-bottom: solid 1px pink;background-color:#f8b7bd;border-top-left-radius:0.5em;border-top-right-radius:0.5em;padding:0.8em">
           <h4 style="margin:1px;" *ngIf="message.summary">
             <label [innerHTML]="message.summary | sanitizeHtmlString" style="font-size: 16px;"></label>
           </h4>
         </div>
       </div>
-      <div class="ui-g-12 ui-g-nopad" align="left" *ngIf="message.detail"
+      <div class="p-col-12 p-col-nogutter" align="left" *ngIf="message.detail"
         style="padding:1em;max-height:15em;overflow:auto">
-        <div class="ui-g-4" align="center">
+        <div class="p-col-4" align="center">
           <i class="pi pi-exclamation-triangle" style="font-size: 4em;margin:0px;color:red"
             *ngIf="message.summary!=='Login Failed!'"></i>
           <img src="../../../assets/images/lock-error.png" *ngIf="message.summary==='Login Failed!'">
         </div>
-        <!-- <p-scrollPanel [style]="{width: '100%', height: '100px'}"> -->
-        <div class="ui-g-8">
+        <div class="p-col-8">
           <label [innerHTML]="message.detail | sanitizeHtmlString"></label>
         </div>
-        <!-- </p-scrollPanel> -->
       </div>
-      <div class="ui-g-12 ui-g-nopad" align="left" *ngIf="message.detail"
+      <div class="p-col-12 p-col-nogutter" align="left" *ngIf="message.detail"
         style="border-top: solid 1px pink;;background-color:#f8b7bd;border-bottom-left-radius:0.5em;border-bottom-right-radius:0.5em">
-        <div class="ui-g-12" align="right">
-          <button type="button" pButton (click)="onReject()" label="OK" class="ui-button-secondary"
+        <div class="p-col-12" align="right">
+          <button type="button" pButton (click)="onReject()" label="OK" class="p-button-secondary"
             style="border-color: #007ad9; background: #007ad9; color: #ffff;"></button>
         </div>
       </div>
@@ -76,17 +64,17 @@
 <p-toast position="center" key="exception" (onClose)="onRejectException()" styleClass="error-toast"
   [style]="{width:'80em'}" [modal]="true" [baseZIndex]="5000" appendTo="body">
   <ng-template let-message pTemplate="message">
-    <div class="ui-fluid">
-      <div class="ui-g ui-g-nopad">
-        <div class="ui-g-12 alertHeader">
-          <div class="ui-g-12 ui-md-1" align="center">
+    <div class="p-fluid">
+      <div class="p-grid p-col-nogutter">
+        <div class="p-col-12 alertHeader">
+          <div class="p-col-12 p-md-1" align="center">
             <i class="pi pi-exclamation-triangle" style="font-size: 1.9em;margin:2px;"></i>
           </div>
-          <div class="ui-g-12 ui-md-10" align="left">
+          <div class="p-col-12 p-md-10" align="left">
             <h4 style="margin:5px;">Time System Error</h4>
           </div>
         </div>
-        <div class="ui-g-12 ui-md-12" align="left" style="padding:0.8em;">
+        <div class="p-col-12 p-md-12" align="left" style="padding:0.8em;">
           <p-scrollPanel [style]="{width: '100%', height: '300px'}"
             *ngIf="message && message.data && message.data.ErrorMessage">
             <div>
@@ -163,14 +151,14 @@
         </div>
       </div>
       <hr>
-      <div class="ui-g ui-g-nopad">
-        <div class="ui-g-4"></div>
-        <div class="ui-g-4">
+      <div class="p-grid p-col-nogutter">
+        <div class="p-col-4"></div>
+        <div class="p-col-4">
           <a *ngIf="message && message.data && message.data.NavigateUrl" href="{{message.data.NavigateUrl}}"> <button
               type="button" pButton (click)="onRejectException()" label="Mail to Support"
-              class="ui-button-raised ui-button-danger" icon="pi pi-envelope"></button></a>
+              class="p-button-raised p-button-danger" icon="pi pi-envelope"></button></a>
         </div>
-        <div class="ui-g-4"></div>
+        <div class="p-col-4"></div>
       </div>
     </div>
   </ng-template>
@@ -179,25 +167,25 @@
 <p-toast position="center" key="connection" (onClose)="onRejectConnection()" styleClass="alertToast" [modal]="true"
   [autoZIndex]="true" appendTo="body">
   <ng-template let-message pTemplate="message">
-    <div class="ui-g ui-fluid ui-g-nopad">
+    <div class="p-grid p-fluid p-col-nogutter">
       <div class="alertHeader">
-        <div class="ui-g-12 ui-md-2" align="center">
+        <div class="p-col-12 p-md-2" align="center">
           <i class="pi pi-exclamation-triangle" style="font-size: 1.9em;margin:2px;"></i>
         </div>
-        <div class="ui-g-12 ui-md-10" align="left">
+        <div class="p-col-12 p-md-10" align="left">
           <h4 style="margin:5px;" *ngIf="message.summary">
             <label [innerHTML]="message.summary | sanitizeHtmlString"></label>
           </h4>
         </div>
       </div>
-      <div class="ui-g-12" align="left" style="padding:0.8em;" *ngIf="message.detail">
+      <div class="p-col-12" align="left" style="padding:0.8em;" *ngIf="message.detail">
         <p-scrollPanel [style]="{width: '100%', height: '100px'}">
           <label [innerHTML]="message.detail | sanitizeHtmlString"></label>
         </p-scrollPanel>
       </div>
-      <div class="ui-g-12" align="right" style="padding:0.8em;">
-        <button type="button" pButton (click)="onRejectConnection()" label="Check Connection"
-          class="ui-button-secondary" style="border-color: #007ad9; background: #007ad9; color: #ffff;"></button>
+      <div class="p-col-12" align="right" style="padding:0.8em;">
+        <button type="button" pButton (click)="onRejectConnection()" label="Check Connection" class="p-button-secondary"
+          style="border-color: #007ad9; background: #007ad9; color: #ffff;"></button>
       </div>
     </div>
   </ng-template>
@@ -208,12 +196,6 @@
 <p-toast key="mailToast" position="center" [modal]="true" [baseZIndex]="50000"></p-toast>
 
 <p-confirmDialog></p-confirmDialog>
-<!-- <p-dialog [(visible)]="showSpinner" [blockScroll]="true" [showHeader]="false" [autoZIndex]="true"
-  [closeOnEscape]="false" [modal]="true" [responsive]="true" [closable]="false" [maximizable]="false"
-  [resizable]="false" [draggable]="false" [style]="{'width': '80px','height':'65px'}">
-  <p-progressSpinner *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" strokeWidth="4" fill="#EEEEEE">
-  </p-progressSpinner>
-</p-dialog> -->
 <div *ngIf="showNetworkConn">
   <app-networkconnectivity></app-networkconnectivity>
 </div>
