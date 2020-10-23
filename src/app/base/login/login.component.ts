@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
     this.showSpinner = false;
 
     this.BuildFormControls();
+    this.themeSvc.setLightTheme();
   }
 
   BuildFormControls() {
