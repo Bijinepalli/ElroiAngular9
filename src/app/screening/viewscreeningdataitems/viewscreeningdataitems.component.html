@@ -1,0 +1,54 @@
+<div class="p-grid">
+    <div class="p-col-12 p-nogutter" style="padding-top: .5em;">
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                Existing Screening Data Items
+            </div>
+            <div class="ui-toolbar-group-right">
+            </div>
+        </p-toolbar>
+    </div>
+</div>
+<ng-container *ngIf="isSecure">
+    <div class="p-grid p-nogutter">
+        <div class="p-col-12 p-lg-4 p-sm-12 p-md-12">
+            <p-panel header="Existing Data Items" [style]="{'width':'100%'}">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <p-listbox [options]="lstScreeningItems" [(ngModel)]="selectedScreeningItem"
+                            optionLabel="itemName" filter="true" [listStyle]="{'max-height':'15em'}"
+                            [style]="{'width':'100%'}" (click)="lstScreeningItem_Click()">
+                        </p-listbox>
+                    </div>
+                    <div class="p-col-12">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-3">
+                                <button pButton type="button" label="Edit" (click)="btnEditScreeningItem_Click()"
+                                    style="width:100%"></button>
+                            </div>
+                            <div class="p-col-3">
+                                <button pButton type="button" label="Delete" class="ui-button-danger"
+                                    (click)="btnDeleteScreeningItem_Click()" style="width:100%"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+        <div class="p-col-12 p-lg-8 p-sm-12">
+            <p-panel header="Description of the Selected Data Item">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <textarea rows="15" cols="35" [(ngModel)]="selectedScreeningDesc" pInputTextarea
+                            style="width: 100%;"></textarea>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</ng-container>
+<p-toast [style]="{marginTop: '80px'}" position="bottom-right" key="saveSuccess" appendTo="body"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="bottom-right" key="saveError" appendTo="body"></p-toast>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-progressSpinner *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" class="positionMiddle" strokeWidth="4">
+</p-progressSpinner>

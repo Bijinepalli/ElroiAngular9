@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PrimenguiModule } from '../_ui/primengui/primengui.module';
 import { ScreeningRoutingModule } from './screening-routing.module';
 import { DefinescreeningdataitemsComponent } from './definescreeningdataitems/definescreeningdataitems.component';
+import { ViewscreeningdataitemsComponent } from './viewscreeningdataitems/viewscreeningdataitems.component';
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import { DefinescreeningdataitemsComponent } from './definescreeningdataitems/de
     ],
     declarations: [
         DefinescreeningdataitemsComponent,
+        ViewscreeningdataitemsComponent,
     ]
 })
 export class ScreeningModule { }
