@@ -9,7 +9,7 @@
           appendTo="body">
         </p-splitButton>&nbsp;
         <button pButton icon="fa fa-power-off" pTooltip="Logout" tooltipPosition="right" (click)="logout()"
-          class="p-button-raised p-button-danger topbar-button" style="padding-right:0px"></button>
+          class="ui-button-raised ui-button-danger topbar-button" style="padding-right:0px"></button>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
       </div>
       <div class="p-col" align="right">
         <button pButton pRipple type="button" icon="fa fa-power-off" pTooltip="Logout" tooltipPosition="right"
-          (click)="logout()" class="p-button-raised p-button-danger topbar-button" style="padding-right:0px"></button>
+          (click)="logout()" class="ui-button-raised ui-button-danger topbar-button" style="padding-right:0px"></button>
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
               {{loginTime}}
             </div>
             <div class="p-col-6 settings-icon" style="text-align: right;" *ngIf="settings">
-              <p-splitButton icon="fa fa-cog" [model]="settings" styleClass="p-button-raised p-button-secondary"
+              <p-splitButton icon="fa fa-cog" [model]="settings" styleClass="ui-button-raised ui-button-secondary"
                 appendTo="body"></p-splitButton>
             </div>
           </div>
@@ -70,7 +70,7 @@
             <div style="font-size:14px;color:black;">
               {{loginTime}}
               <div class="settings-icon" *ngIf="settings">
-                <p-splitButton icon="fa fa-cog" [model]="settings" styleClass="p-button-raised p-button-info">
+                <p-splitButton icon="fa fa-cog" [model]="settings" styleClass="ui-button-raised ui-button-info">
                 </p-splitButton>
               </div>
             </div>
@@ -120,8 +120,8 @@
   </div>
   <p-footer>
     <button *ngIf="!this.tokenExpired" pButton label="Continue" (click)="contiune()"
-      class="p-button-raised p-button-success topbar-button" style="padding-right:0px"></button>&nbsp;
-    <button pButton label="Logout" (click)="logout()" class="p-button-raised p-button-danger topbar-button"
+      class="ui-button-raised ui-button-success topbar-button" style="padding-right:0px"></button>&nbsp;
+    <button pButton label="Logout" (click)="logout()" class="ui-button-raised ui-button-danger topbar-button"
       style="padding-right:0px"></button>
   </p-footer>
 </p-dialog>

@@ -21,8 +21,8 @@
       <div class="p-col-12 p-col-nogutter" align="left" *ngIf="message.detail"
         style="border-top: solid 1px pink;;background-color:#f8b7bd;border-bottom-left-radius:0.5em;border-bottom-right-radius:0.5em;padding:0.3em">
         <div class="p-col-12" align="right">
-          <button pButton type="button" label="Mail" class="p-button-info"></button>&nbsp;
-          <button pButton type="button" label="Close" class="p-button-danger" (click)="onRejectError()"></button>
+          <button pButton type="button" label="Mail" class="ui-button-info"></button>&nbsp;
+          <button pButton type="button" label="Close" class="ui-button-danger" (click)="onRejectError()"></button>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <div class="p-col-12 p-col-nogutter" align="left" *ngIf="message.detail"
         style="border-top: solid 1px pink;;background-color:#f8b7bd;border-bottom-left-radius:0.5em;border-bottom-right-radius:0.5em">
         <div class="p-col-12" align="right">
-          <button type="button" pButton (click)="onReject()" label="OK" class="p-button-secondary"
+          <button type="button" pButton (click)="onReject()" label="OK" class="ui-button-secondary"
             style="border-color: #007ad9; background: #007ad9; color: #ffff;"></button>
         </div>
       </div>
@@ -156,7 +156,7 @@
         <div class="p-col-4">
           <a *ngIf="message && message.data && message.data.NavigateUrl" href="{{message.data.NavigateUrl}}"> <button
               type="button" pButton (click)="onRejectException()" label="Mail to Support"
-              class="p-button-raised p-button-danger" icon="pi pi-envelope"></button></a>
+              class="ui-button-raised ui-button-danger" icon="pi pi-envelope"></button></a>
         </div>
         <div class="p-col-4"></div>
       </div>
@@ -184,7 +184,7 @@
         </p-scrollPanel>
       </div>
       <div class="p-col-12" align="right" style="padding:0.8em;">
-        <button type="button" pButton (click)="onRejectConnection()" label="Check Connection" class="p-button-secondary"
+        <button type="button" pButton (click)="onRejectConnection()" label="Check Connection" class="ui-button-secondary"
           style="border-color: #007ad9; background: #007ad9; color: #ffff;"></button>
       </div>
     </div>
