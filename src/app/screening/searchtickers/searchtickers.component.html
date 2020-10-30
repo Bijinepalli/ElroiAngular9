@@ -1,0 +1,55 @@
+<div class="p-grid p-nogutter" style="width: 470px">
+    <div class="p-col-12" *ngIf="showReport">
+        <div class="p-col-12" style="background: #e7e7e7;" *ngIf="recordsCount === 0">
+            <div class="p-col-12 p-md-6 p-lg-6 NoDataMessage" style="color:red;">
+                No matching data for the selected criteria
+            </div>
+        </div>
+        <div class="p-col-12 p-nogutter" *ngIf="recordsCount > 0">
+            <p-table #dt [columns]="cols" [value]="lstCompanyTickers" [paginator]="true" [rows]="5"
+                [style]="{width:'auto'}" (onPage)="paginate($event)" [responsive]="true" [(first)]="first"
+                [(selection)]="selectedCompany" (onRowSelect)="selectRow($event)">
+                <ng-template pTemplate="caption" let-title>
+                    <tr class="p-grid recordsBar">
+                        <td class="p-lg-6 p-md-12 p-sm-12 label" style="text-align: left; padding-top:.5em">
+                            List of Companies
+                        </td>
+                        <td class="p-lg-6 p-md-12 p-sm-12 label" style="text-align: right; padding-top:.5em">
+                            No of Records: {{recordsCount}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th style="width:3em;">
+                        </th>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                            <input *ngSwitchCase="'companyName'" pInputText type="text" style="width: 120px;"
+                                (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                            <input *ngSwitchCase="'tickerSymbol'" pInputText type="text" style="width: 120px;"
+                                (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td align="center">
+                            <p-tableRadioButton [value]="rowData"></p-tableRadioButton>
+                        </td>
+                        <td *ngFor="let col of columns">
+                            <span class="ui-column-title">{{col.header}}</span>
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

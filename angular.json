@@ -23,12 +23,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "src/styles.css",
               "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css"
             ],
@@ -90,12 +90,12 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "src/styles.css",
               "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css"
             ],

@@ -1,0 +1,62 @@
+<p-dialog #stocksDialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '800px'}"
+    [blockScroll]="true">
+    <p-header>
+        Ticker Values
+    </p-header>
+    <div id="bodyt" class="modelHeight550">
+        <div class="p-col-12 p-sm-12 p-md-12 p-lg-12 p-xl-12">
+            <label class="label">Ticker</label>
+            <br>
+            <div style="height:5px"></div>
+            <div class="ui-inputgroup">
+                <input type="text" pInputText value="0" [(ngModel)]="selectedTicker" style="width:250px" />
+                <p-button icon="pi pi-search" (click)="op.toggle($event)"></p-button>
+            </div>
+        </div>
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+            <label class="label">Select Date</label>
+            <br>
+            <div style="height:5px"></div>
+            <p-calendar [(ngModel)]="selectedDate" [disabledDates]="invalidDates" [showIcon]="true" [maxDate]="maxDate"
+                [readonlyInput]="true" dateFormat="mm/dd/yy" [monthNavigator]="true" [yearNavigator]="true"
+                yearRange="2000:2030" showButtonBar="true"></p-calendar>
+        </div>
+        <div class="p-col-12 p-lg-12 p-sm-12">
+            <p-panel header="Select Data Items">
+                <div class="p-grid">
+                    <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-col-nogutter">
+                        <div class="p-lg-12 p-sm-12">
+                            <label class="label">Categories</label>
+                        </div>
+                        <div class="p-lg-12 p-sm-12">
+                            <p-listbox [options]="lstCategories" optionLabel="label" [(ngModel)]="selectedCategory"
+                                [listStyle]="{'max-height':'200px','min-height':'200px' }" [style]="{'width':'100%'}"
+                                filter="filter" (onChange)="lstCategory_Change($event)"></p-listbox>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-col-nogutter">
+                        <div class="p-lg-12 p-sm-12">
+                            <label class="label">Items</label>
+                        </div>
+                        <div class="p-lg-12 p-sm-12">
+                            <p-listbox [options]="lstItems" optionLabel="label" [(ngModel)]="selectedItem"
+                                [listStyle]="{'max-height':'200px','min-height':'200px'}" [style]="{'width':'100%'}"
+                                filter="filter" (onChange)="lstCategoryItem_Change($event)">
+                            </p-listbox>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+    <p-overlayPanel #op appendTo="body" [showCloseIcon]="true">
+        <app-searchtickers (selectedComp)="getTicker($event,op)"></app-searchtickers>
+    </p-overlayPanel>
+    <p-overlayPanel #opError appendTo="body" [dismissable]="true">
+        <p-message appendTo="ai" severity="error" [text]="errorMessages"></p-message>
+    </p-overlayPanel>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click($event,opError)"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>

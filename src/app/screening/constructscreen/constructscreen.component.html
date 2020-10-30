@@ -1,0 +1,484 @@
+<div class="p-grid">
+    <div class="p-col-12 p-nogutter" style="padding-top: .5em;">
+        <p-toolbar>
+            <div class="ui-toolbar-group-left">
+                Create New Screen
+            </div>
+            <div class="ui-toolbar-group-right" style="color:green">
+                Number of Stocks : {{stocksCount}}
+                <div *ngIf="compPassed" style="color:green">
+                    Companies Passed : {{companiesCount}}
+                </div>
+            </div>
+        </p-toolbar>
+    </div>
+</div>
+<div class="p-grid">
+    <div class="p-col-12 p-nogutter">
+        <p-messages [(value)]="errMsgs" [style]="{width: '100%'}"></p-messages>
+    </div>
+</div>
+<div class="p-grid p-nogutter" style="padding-bottom: 0.5em;padding-top:0.5em">
+    <div class="p-xl-5 p-lg-6 p-md-8 p-sm-12 p-col-nogutter">
+        <label class="label">Domicile</label>
+        <br>
+        <div style="height:5px"></div>
+        <p-selectButton [options]="lstDomicileTypes" [(ngModel)]="selectedDomicileType">
+        </p-selectButton>
+    </div>
+    <div class="p-xl-7 p-lg-6 p-md-4 p-sm-12 p-col-nogutter" style="margin-top: auto;">
+        <p-selectButton [options]="lstModes" [(ngModel)]="selectedMode" multiple="multiple"></p-selectButton>
+    </div>
+</div>
+<div class="p-grid">
+    <div class="p-col-12 p-nogutter">
+        <p-panel header="Select Criteria">
+            <div class="p-grid">
+                <div class="p-col-12 p-lg-4 p-md-6 p-sm-12">
+                    <span class="labelMedium"><b>Categories</b></span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <p-listbox [options]="lstCategories" [(ngModel)]="selectedCategory"
+                        [listStyle]="{'max-height':'150px','min-height':'150px'}" [style]="{'width':'100%'}"
+                        filter="filter" (onClick)="lstCategories_Click($event)">
+                        <ng-template let-category pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                {{category.label}}
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+                <div class="p-col-12 p-lg-4 p-md-6 p-sm-12">
+                    <span class="labelMedium"><b>Items</b></span>
+                    <br>
+                    <div style="height:5px"></div>
+                    <p-listbox [options]="lstItems" [(ngModel)]="selectedItem" optionLabel="label"
+                        [listStyle]="{'max-height':'150px','min-height':'150px'}" [style]="{'width':'100%'}"
+                        filter="filter">
+                    </p-listbox>
+                </div>
+                <div class="p-lg-4 p-md-12 p-sm-12" style="text-align: center;margin:auto">
+                    <button pButton type="button" label="Add Item" (click)="btnAddItem_Click()"></button>&nbsp;
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>
+<div class="p-grid" style="margin-top: 0.2em;">
+    <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+        <p-panel header="Build Your Criteria">
+            <div class="p-grid">
+                <div class="p-col-12 p-lg-5 p-md-7 p-sm-12">
+                    <div class="p-col-12">
+                        <textarea rows="7" cols="30" pInputTextarea style="width: 100%"
+                            [(ngModel)]="selectedFormulaText"></textarea>
+                    </div>
+                    <div class="p-col-12" style="text-align: center;">
+                        <button pButton type="button" label="Add Criteria" class="ui-button-raised ui-button-success"
+                            (click)="btnAddCriteria_Click()"></button>
+                    </div>
+                </div>
+                <div class="p-col-12 p-lg-7 p-md-5 p-sm-12">
+                    <div class="p-grid">
+                        <div class="p-lg-4 p-md-12 p-sm-12">
+                            <div class="p-grid" style="margin-top: auto;">
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="+" (click)="btnAddOperator_Click('+')"
+                                        style="width: 100%"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="-" (click)="btnAddOperator_Click('-')"
+                                        style="width: 100%"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="*" (click)="btnAddOperator_Click('*')"
+                                        style="width: 100%"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="/" (click)="btnAddOperator_Click('/')"
+                                        style="width: 100%"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="=" (click)="btnAddOperator_Click('=')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="!=" (click)="btnAddOperator_Click('! =')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label=">=" (click)="btnAddOperator_Click('&gt;=')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="<=" (click)="btnAddOperator_Click('&lt;=')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="<" (click)="btnAddOperator_Click('&lt;')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label=">" (click)="btnAddOperator_Click('&gt;')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="&" (click)="btnAddOperator_Click('[AND]')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button pButton type="button" label="|" (click)="btnAddOperator_Click('[OR]')"
+                                        style="width: 100%" class="ui-button-raised ui-button-warning"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="TOP" (click)="btnAddOperator_Click('[TOP 1]')"
+                                        style="width:100%;text-align: center;"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Bottom"
+                                        (click)="btnAddOperator_Click('[BOTTOM 1]')"
+                                        style="width:100%;text-align: center;"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-lg-4 p-md-12 p-sm-12">
+                            <div class="p-grid" style="margin-top: auto;">
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Bool" style="width:100%;text-align: center;"
+                                        (click)="btnModelOpen_Click('bool')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Decile" style="width:100%;text-align: center;"
+                                        (click)="btnModelOpen_Click('decile')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Middle" style="width:100%;text-align: center;"
+                                        (click)="btnModelOpen_Click('middle')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Rank" style="width:100%;text-align: center;"
+                                        (click)="btnModelOpen_Click('rank')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Alpha" style="width:100%;text-align: center;"
+                                        (click)="btnModelOpen_Click('alpha')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Dates" style="width:100%;text-align: center;"
+                                        (click)="btnModelOpen_Click('dates')"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-lg-4 p-md-12 p-sm-12">
+                            <div class="p-grid" style="margin-top: auto;">
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Stocks" style="width:100%;text-align: center;"
+                                        class="ui-button-raised ui-button-success"
+                                        (click)="btnModelOpen_Click('stocks')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Statistics"
+                                        style="width:100%;text-align: center;"
+                                        class="ui-button-raised ui-button-success"
+                                        (click)="btnModelOpen_Click('statistics')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="AVG" style="width:100%;text-align: center;"
+                                        class="ui-button-raised ui-button-success"
+                                        (click)="btnModelOpen_Click('math')"></button>
+                                </div>
+                                <div class="p-col-6">
+                                    <button pButton type="button" label="Growth" style="width:100%;text-align: center;"
+                                        class="ui-button-raised ui-button-success"
+                                        (click)="btnModelOpen_Click('growth')"></button>
+                                </div>
+                                <div class="p-col-12">
+                                    <button pButton type="button" label="Benchmarks"
+                                        style="width:100%;text-align: center;"
+                                        class="ui-button-raised ui-button-success"
+                                        (click)="btnModelOpen_Click('benchmarks')"></button>
+                                </div>
+                                <div class="p-col-12">
+                                    <button pButton type="button" label="Ind / Sub Ind"
+                                        style="width:100%;text-align: center;"
+                                        class="ui-button-raised ui-button-success"
+                                        (click)="btnModelOpen_Click('subind')"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>
+<div class="p-grid" style="margin-top: 0.2em;">
+    <div class="p-col-12 p-lg-12 p-md-12 p-sm-12 p-nogutter">
+        <p-panel header="Selected Criteria">
+            <div class="p-grid">
+                <div class="p-lg-12 p-sm-12" style="height: 250px;overflow-y: auto">
+                    <p-table [value]="lstStrategies" [responsive]="false" [scrollable]="true">
+                        <ng-template pTemplate="body" let-strat let-index="rowIndex">
+                            <tr [pReorderableRow]="index">
+                                <td style="width: 3em;">
+                                    <i class="fa fa-bars" pReorderableRowHandle></i>
+                                </td>
+                                <td style="width: 90em;">
+                                    {{strat.strategy}}
+                                </td>
+                                <td style="width: 4em;">
+                                    <button pButton type="button" icon="pi pi-pencil" class="ui-button-info"
+                                        pTooltip="Edit" (click)="btnEditStrategy_Click(strat)"></button>
+                                </td>
+                                <td style="width: 4em;">
+                                    <button pButton type="button" icon="pi pi-times" class="ui-button-danger"
+                                        pTooltip="Delete" (click)="btnDeleteStrategy_Click(strat.strategyId)"></button>
+                                </td>
+                                <td style="width: 4em;">
+                                    <button pButton type="button" icon="pi pi-calendar" class="ui-button-info"
+                                        pTooltip="Dates" (click)="btnDatesStrategy_Click(strat)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>
+<div class="p-grid" style="padding-bottom: 0.5em; padding-top:0.5em">
+    <div class="p-lg-2 p-md-4 p-sm-6 p-nogutter">
+        BackScreening
+    </div>
+    <div class="p-lg-1 p-md-2 p-sm-6">
+        <p-inputSwitch [(ngModel)]="selectedBackScreeningSwitched"></p-inputSwitch>
+    </div>
+    <div class="p-lg-3 p-md-6 p-sm-12">
+        <div *ngIf="selectedBackScreeningSwitched">
+            <p-calendar [(ngModel)]="selectedDate" [readonlyInput]="true" [disabledDates]="lstInvalidDates"
+                showButtonBar="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                dateFormat="mm/dd/yy" [showIcon]="true" [showOnFocus]="false" [maxDate]="maxDate">
+            </p-calendar>
+        </div>
+    </div>
+    <div class="p-lg-6 p-md-12 p-sm-12" style="text-align: right;">
+        <div class="p-grid">
+            <div class="p-lg-9 p-md-9 p-sm-5">
+                <button pButton style="width: 8em;" type="button" label="Inc/Exc" class="ui-button-warning"
+                    (click)="btnModelOpen_Click('incExc')"></button>&nbsp; <i
+                    *ngIf="(includeCount  !== undefined && includeCount  !== null && includeCount  >0)|| (excludeCount  !== undefined && excludeCount  !== null && excludeCount  >0)"
+                    class="fa fa-info-circle" (mouseenter)="incexckOverlay.show($event)"
+                    style="font-size:1em;color:green"></i>
+            </div>
+            <div class="p-lg-2 p-md-2 p-sm-6">
+                <button pButton type="button" class="ui-button-raised ui-button-success" label="{{saveLabelText}}"
+                    (click)="btnSave_Click()" style="width: 8.0em;"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-grid buttonBg">
+    <div class="p-lg-1 p-md-2 p-sm-4">
+        <button pButton type="button" label="Alphas" style="width: 100%;" (click)="btnNavSub_Click('Decile','Alphas')"
+            class="ui-button-warning"></button>
+    </div>
+    <div class="p-lg-2 p-md-2 p-sm-4">
+        <button pButton type="button" label="Combined Alphas" style="width: 100%;"
+            (click)="btnNavSub_Click('Combined','Combined')" class="ui-button-warning"></button>
+    </div>
+    <div class="p-lg-1 p-md-2 p-sm-4">
+        <button pButton type="button" label="Run" style="width: 100%;" (click)="btnNavSub_Click('Run','Run')"></button>
+    </div>
+    <div class="p-lg-1 p-md-2 p-sm-4">
+        <button pButton type="button" label="View" style="width: 100%;"
+            (click)="btnNavSub_Click('view','View')"></button>
+    </div>
+    <div class="p-lg-1 p-md-2 p-sm-4">
+        <button pButton type="button" label="Portfolio" style="width: 100%;"
+            (click)="btnNavSub_Click('Portfolio','Portfolio')" class="ui-button-warning"></button>
+    </div>
+    <div class="p-lg-2 p-md-3 p-sm-8">
+        <button pButton type="button" label="Report Options" style="width: 100%;" class="ui-button-warning"
+            (click)="btnNavSub_Click('view','Report')"></button>
+    </div>
+</div>
+
+<!-- #region Save Dialog -->
+<!-- To Open Save Dialog on SAVE button click  -->
+<p-dialog header="Enter Criteria Name" [(visible)]="displaySaveDialog" [modal]="true" [blockScroll]="true">
+    <div class="p-grid">
+        <div class="p-col-12 p-nogutter">
+            <label class="label">Criteria Name</label>
+            <br>
+            <div style="height:5px"></div>
+            <input id="criteriaName" type="text" size="30" pInputText style="width: 75%" [(ngModel)]="criteriaName">
+        </div>
+        <div class="p-col-12 p-nogutter">
+            <label class="label">Move To Folder</label>
+            <br>
+            <div style="height:5px"></div>
+            <p-dropdown [options]="lstFolders" placeholder="Select Folder" [(ngModel)]="selectedFolder" appendTo="body"
+                [virtualScroll]="true" [itemSize]="31" [filter]="true" [style]="{'width':'75%'}" [showClear]="true">
+            </p-dropdown>
+        </div>
+    </div>
+    <p-footer>
+        <button pButton type="button" label="Save" class="ui-button-raised ui-button-success"
+            (click)="btnSaveScreeningData_Click('save')"></button>&nbsp;
+        <button pButton type="button" label="Save & View" class="ui-button-raised ui-button-success"
+            (click)="btnSaveScreeningData_Click('saveView')"></button>&nbsp;
+        <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+            (click)="btnCloseScreeningSave_Click()"></button>&nbsp;
+    </p-footer>
+</p-dialog>
+<!-- #endregion -->
+
+<p-dialog header="Stocks Passed" [(visible)]="displayStocksPassed" [modal]="true" [blockScroll]="true"
+    [style]="{width: '25em'}">
+    <div style="text-align: center;">
+        <label style="font-size: 70px;color: green;">{{companiesCount}}</label>
+    </div>
+    <p-footer>
+        <button pButton type="button" label="OK" class="ui-button-raised ui-button-sucess"
+            (click)="btnStockesPassedOK_Click()"></button>&nbsp;
+    </p-footer>
+</p-dialog>
+
+<p-overlayPanel #include [showCloseIcon]="true" [dismissable]="true" autoZIndex="true" appendTo="body">
+    <div class="p-grid" style="width: 250px">
+        <label class="label">Stocks</label>
+        <br>
+        <div style="height:5px"></div>
+        <textarea rows="10" cols="40" [(ngModel)]="includedStocks" pInputTextarea [disabled]="true"></textarea>
+    </div>
+</p-overlayPanel>
+
+<p-overlayPanel #exclude [showCloseIcon]="true" [dismissable]="true" autoZIndex="true" appendTo="body">
+    <div class="p-grid" style="width: 250px">
+        <label class="label">Stocks</label>
+        <br>
+        <div style="height:5px"></div>
+        <textarea rows="10" cols="40" [(ngModel)]="excludedStocks" pInputTextarea [disabled]="true"></textarea>
+    </div>
+</p-overlayPanel>
+
+<p-overlayPanel #incexckOverlay [showCloseIcon]="true" [dismissable]="true" autoZIndex="true" appendTo="body">
+    <div class="p-grid">
+        <p-table [value]="lstIncExcValues" [style]="{width: '50em'}" appendTo="body">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:15em">Mode</th>
+                    <th style="width:35em">Stocks </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-overlaydata>
+                <tr>
+                    <td style="width:15em">{{overlaydata.label}}</td>
+                    <td style="width:35em; word-break: break-all;">{{overlaydata.value}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</p-overlayPanel>
+
+<div *ngIf="stocksModelOpen">
+    <app-stocksmodel (popUpClose)="modelClose($event,'stocks')" (popUpSubmit)="modelSubmit($event,'stocks')">
+    </app-stocksmodel>
+</div>
+<!-- <div *ngIf="benchmarksModelOpen">
+    <app-benchmarksmodel (popUpClose)="modelClose($event,'benchmarks')"
+        (popUpSubmit)="modelSubmit($event,'benchmarks')">
+    </app-benchmarksmodel>
+</div> -->
+<!-- <div *ngIf="subindModelOpen">
+    <app-subindmodel (popUpClose)="modelClose($event,'subind')" (popUpSubmit)="modelSubmit($event,'subind')">
+    </app-subindmodel>
+</div> -->
+<!-- <div *ngIf="statisticsModelOpen">
+    <app-statisticsmodel (popUpClose)="modelClose($event,'statistics')"
+        (popUpSubmit)="modelSubmit($event,'statistics')">
+    </app-statisticsmodel>
+</div> -->
+
+<!-- <div *ngIf="mathModelOpen">
+    <app-mathmodel (popUpClose)="modelClose($event,'math')" (popUpSubmit)="modelSubmit($event,'math')"></app-mathmodel>
+</div> -->
+<!-- <div *ngIf="growthModelOpen">
+    <app-growthmodel (popUpClose)="modelClose($event,'growth')" (popUpSubmit)="modelSubmit($event,'growth')">
+    </app-growthmodel>
+</div> -->
+<!-- <div *ngIf="alphaModelOpen">
+    <app-alphamodel (popUpClose)="modelClose($event,'alpha')" (popUpSubmit)="modelSubmit($event,'alpha')">
+    </app-alphamodel>
+</div> -->
+<!-- <div *ngIf="boolModelOpen">
+    <app-boolmodel [selectedBoolean]="selectedBoolean" (popUpClose)="modelClose($event,'bool')"
+        (popUpSubmit)="modelSubmit($event,'bool')"></app-boolmodel>
+</div> -->
+<!-- <div *ngIf="decileModelOpen">
+    <app-decilemodel [selectedDecile]="selectedDecile" (popUpClose)="modelClose($event,'decile')"
+        (popUpSubmit)="modelSubmit($event,'decile')">
+    </app-decilemodel>
+</div> -->
+<!-- <div *ngIf="middleModelOpen">
+    <app-middlemodel [selectedMiddle]="selectedMiddle" (popUpClose)="modelClose($event,'middle')"
+        (popUpSubmit)="modelSubmit($event,'middle')">
+    </app-middlemodel>
+</div> -->
+<!-- <div *ngIf="rankModelOpen">
+    <app-rankmodel [selectedRank]="selectedRank" (popUpClose)="modelClose($event,'rank')"
+        (popUpSubmit)="modelSubmit($event,'rank')"></app-rankmodel>
+</div> -->
+<!-- <div *ngIf="ntileModelOpen">
+    <app-ntilemodel (popUpClose)="modelClose($event,'ntile')" (popUpSubmit)="modelSubmit($event,'ntile')">
+    </app-ntilemodel>
+</div> -->
+<!-- <div *ngIf="countryCodeModelOpen">
+    <app-countrycodemodel [selectedcountrycodes]="selectedcountrycodes" (popUpClose)="modelClose($event,'countryCode')"
+        (popUpSubmit)="modelSubmit($event,'countryCode')">
+    </app-countrycodemodel>
+</div> -->
+<!-- <div *ngIf="incExcModelOpen">
+    <app-incexcmodel (popUpClose)="modelClose($event,'incExc')" (popUpSubmit)="modelSubmit($event,'incExc')">
+    </app-incexcmodel>
+</div> -->
+<!-- <div *ngIf="indexIndicatorModelOpen">
+    <app-indexindicatormodel [selectedIndexIndicators]="selectedIndexIndicators"
+        (popUpClose)="modelClose($event,'indexIndicator')" (popUpSubmit)="modelSubmit($event,'indexIndicator')">
+    </app-indexindicatormodel>
+</div> -->
+<!-- <div *ngIf="ersModelOpen">
+    <app-ersmodel [title]="selectedERSModel" [selectedERS]="selectedERS" (popUpClose)="modelClose($event,'ers')"
+        (popUpSubmit)="modelSubmit($event,'ers')">
+    </app-ersmodel>
+</div> -->
+<!-- <div *ngIf="strModelOpen">
+    <app-shorttermratingmodel [item]="itemInput" [selectedSTR]="selectedSTR" (popUpClose)="modelClose($event,'str')"
+        (popUpSubmit)="modelSubmit($event,'str')">
+    </app-shorttermratingmodel>
+</div> -->
+<!-- <div *ngIf="russellIndModelOpen">
+    <app-russellindustrymodel [selectedRusselIndustry]="selectedRusselIndustry"
+        (popUpClose)="modelClose($event,'russellInd')" (popUpSubmit)="modelSubmit($event,'russellInd')">
+    </app-russellindustrymodel>
+</div> -->
+<!-- <div *ngIf="gicsubindModelOpen">
+    <app-gicsubindustrymodel [selectedGICSubIndustries]="selectedGICSubIndustries"
+        (popUpClose)="modelClose($event,'gicsubind')" (popUpSubmit)="modelSubmit($event,'gicsubind')">
+    </app-gicsubindustrymodel>
+</div> -->
+<!-- <div *ngIf="displayDatesDialog">
+    <app-dates (dialogOkEvent)="modelSubmit($event,'dates')" (dialogCancelEvent)="modelClose($event,'dates')">
+    </app-dates>
+</div> -->
+<!-- <div *ngIf="displayDatesGridDialog">
+    <app-dates [valRequired]="yearValidation" (dialogOkEvent)="modelSubmit($event,'datesGrid')"
+        (dialogCancelEvent)="modelClose($event,'datesGrid')">
+    </app-dates>
+</div> -->
+<p-toast [style]="{marginTop: '80px'}" key="saveSuccess" appendTo="body"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" key="saveError" appendTo="body"></p-toast>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-progressSpinner *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" class="positionMiddle" strokeWidth="4">
+</p-progressSpinner>
