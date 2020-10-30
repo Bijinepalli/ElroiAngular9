@@ -17,9 +17,9 @@
             <label class="label">Select Date</label>
             <br>
             <div style="height:5px"></div>
-            <p-calendar [(ngModel)]="selectedDate" [disabledDates]="invalidDates" [showIcon]="true" [maxDate]="maxDate"
-                [readonlyInput]="true" dateFormat="mm/dd/yy" [monthNavigator]="true" [yearNavigator]="true"
-                yearRange="2000:2030" showButtonBar="true"></p-calendar>
+            <p-calendar [(ngModel)]="selectedDate" [disabledDates]="invalidDates" [showIcon]="true" appendTo="body"
+                [maxDate]="maxDate" [readonlyInput]="true" dateFormat="mm/dd/yy" [monthNavigator]="true"
+                [yearNavigator]="true" yearRange="2000:2030" showButtonBar="true"></p-calendar>
         </div>
         <div class="p-col-12 p-lg-12 p-sm-12">
             <p-panel header="Select Data Items">

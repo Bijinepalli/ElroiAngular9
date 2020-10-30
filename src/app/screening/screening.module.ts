@@ -8,6 +8,9 @@ import { ViewscreeningdataitemsComponent } from './viewscreeningdataitems/viewsc
 import { ConstructscreenComponent } from './constructscreen/constructscreen.component';
 import { StocksmodelComponent } from './stocksmodel/stocksmodel.component';
 import { SearchtickersComponent } from './searchtickers/searchtickers.component';
+import { BenchmarksmodelComponent } from './benchmarksmodel/benchmarksmodel.component';
+import { StatisticsmodelComponent } from './statisticsmodel/statisticsmodel.component';
+import { MathmodelComponent } from './mathmodel/mathmodel.component';
 
 @NgModule({
     imports: [
@@ -22,6 +25,9 @@ import { SearchtickersComponent } from './searchtickers/searchtickers.component'
         ConstructscreenComponent,
         StocksmodelComponent,
         SearchtickersComponent,
+        BenchmarksmodelComponent,
+        StatisticsmodelComponent,
+        MathmodelComponent,
     ]
 })
 export class ScreeningModule { }
