@@ -11,6 +11,9 @@ import { SearchtickersComponent } from './searchtickers/searchtickers.component'
 import { BenchmarksmodelComponent } from './benchmarksmodel/benchmarksmodel.component';
 import { StatisticsmodelComponent } from './statisticsmodel/statisticsmodel.component';
 import { MathmodelComponent } from './mathmodel/mathmodel.component';
+import { GrowthmodelComponent } from './growthmodel/growthmodel.component';
+import { SubindmodelComponent } from './subindmodel/subindmodel.component';
+import { AlphamodelComponent } from './alphamodel/alphamodel.component';
 
 @NgModule({
     imports: [
@@ -28,6 +31,9 @@ import { MathmodelComponent } from './mathmodel/mathmodel.component';
         BenchmarksmodelComponent,
         StatisticsmodelComponent,
         MathmodelComponent,
+        GrowthmodelComponent,
+        SubindmodelComponent,
+        AlphamodelComponent,
     ]
 })
 export class ScreeningModule { }

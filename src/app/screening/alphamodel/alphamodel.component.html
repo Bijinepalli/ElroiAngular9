@@ -1,0 +1,84 @@
+<p-dialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '800px'}"
+    [blockScroll]="true">
+    <p-header>
+        Existing Alpha Strategies
+    </p-header>
+    <div class="modelHeight550">
+        <div class="p-grid">
+            <div class="p-col-12 p-lg-12 p-md-6 p-sm-12">
+                <label class="label">Select Folder</label><br>
+                <div style="height: 5px"></div>
+                <p-dropdown [options]="lstMasterFolders" placeholder="Select Folder" (onChange)="drpFolder_Change()"
+                    [virtualScroll]="true" [style]="{'width':'25em'}" [itemSize]="31" [filter]="true" [showClear]="true"
+                    [(ngModel)]="selectedFolder">
+                </p-dropdown>
+                &nbsp;
+            </div>
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+                <label class="label">Most Recent Five Alphas</label>
+                <br>
+                <div style="height:5px"></div>
+                <p-dropdown [options]="lstRecentAlphas" placeholder="Select" (onChange)="drpRecentAlpha_Change()"
+                    [filter]="true" [showClear]="true" [style]="{'width':'25em'}" [(ngModel)]="selectedRecentAlpha">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-lg-6 p-sm-12 p-md-12">
+                <p-panel header="Existing Alpha Items">
+                    <div class="p-grid" style="min-height: 200px;">
+                        <div class="p-col-12 p-lg-12 p-sm-12">
+                            <p-listbox #existingList [options]="lstExistingAlphaItems" (click)="lstAlpha_Click()"
+                                [(ngModel)]="selectedAlpha" filter="filter" [filterValue]="filterval"
+                                [listStyle]="{'max-height':'180px','min-height':'180px' }" [style]="{'width':'100%'}">
+                                <ng-template pTemplate="body" let-data>
+                                    <tr #row [attr.id]="data.label">
+                                        <td>{{data.label}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-listbox>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+            <div class="p-col-12 p-lg-6 p-sm-12 p-md-12">
+                <p-panel header="Description of the Selected Alpha Item">
+                    <div class="p-grid" style="min-height: 200px;">
+                        <div class="p-col-12 p-lg-12 p-sm-12">
+                            <p-listbox [options]="lstExistingAlphaDesc" filter="filter"
+                                [listStyle]="{'max-height':'180px','min-height':'180px' }" [style]="{'width':'100%'}">
+                            </p-listbox>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-lg-4 p-md-12 p-sm-12">
+                <label class="label">Operator</label>
+                <br>
+                <div style="height:5px"></div>
+                <p-dropdown [options]="lstOperator" [(ngModel)]="selectedOperator" appendTo="body"
+                    [style]="{ 'width':'20%'}">
+                </p-dropdown>
+            </div>
+            <div class="p-col-12 p-lg-4 p-md-12 p-sm-12">
+                <label class="label">Alpha Value</label>
+                <br>
+                <div style="height:5px"></div>
+                <input type="text" pInputText [(ngModel)]="txtAlphaValue" size="10" pKeyFilter="pint" />&nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="p-col-12 p-lg-12 p-sm-12">
+        <button #hiddenButton id="hiddenButton" pButton type="button" label="Hidden" (click)="btnHidden_Click()"
+            style="display: none;"></button>&nbsp;
+    </div>
+    <p-overlayPanel #opError appendTo="body" [dismissable]="true">
+        <p-message severity="error" [text]="errorMessages"></p-message>
+    </p-overlayPanel>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click($event,opError)"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>
