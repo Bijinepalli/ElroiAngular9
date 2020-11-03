@@ -11,108 +11,103 @@
             <p-selectButton [options]="lstSeries" [(ngModel)]="selectedSeries" (onChange)="btnSeries_Change($event)">
             </p-selectButton>
         </div>
-        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
-            <div class="p-grid p-nogutter" *ngIf="selectedSeries==='2'">
-                <div class="p-col-12 p-lg-12 p-md-12 p-sm-12 p-col-nogutter">
-                    <label class="label">Start Period</label>
-                    <br>
-                    <div style="height:5px"></div>
-                    <div class="p-grid">
-                        <div class="p-lg-1 p-md-2 p-sm-3">
-                            <input type="text" pInputText [(ngModel)]="txtStartPeriod" size="4" pKeyFilter="pint" />
-                        </div>
-                        <div class="p-lg-1 p-md-10 p-sm-9">
-                            <p-dropdown [options]="lstStartPeriod" [(ngModel)]="selectedStartPeriod"
-                                [style]="{ 'min-width': '100px'}">
-                            </p-dropdown>
-                        </div>
+        <div *ngIf="selectedSeries==='2'">
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+                <label class="label">Start Period</label>
+                <br>
+                <div style="height:5px"></div>
+                <div class="p-grid">
+                    <div class="p-lg-1 p-md-2 p-sm-3">
+                        <input type="text" pInputText [(ngModel)]="txtStartPeriod" size="4" pKeyFilter="pint" />
                     </div>
-                </div>
-                <div class="p-col-12 p-lg-12 p-md-12 p-sm-12 p-col-nogutter">
-                    <label class="label">End Period</label>
-                    <br>
-                    <div style="height:5px"></div>
-                    <div class="p-grid">
-                        <div class="p-lg-1 p-md-2 p-sm-3">
-                            <input type="text" pInputText [(ngModel)]="txtEndPeriod" size="4" pKeyFilter="pint" />
-                        </div>
-                        <div class="p-lg-1 p-md-10 p-sm-9">
-                            <p-dropdown [options]="lstEndPeriod" [(ngModel)]="selectedEndPeriod"
-                                [style]="{ 'min-width': '100px'}">
-                            </p-dropdown>
-                        </div>
+                    <div class="p-lg-1 p-md-10 p-sm-9">
+                        <p-dropdown [options]="lstStartPeriod" [(ngModel)]="selectedStartPeriod"
+                            [style]="{ 'min-width': '100px'}">
+                        </p-dropdown>
                     </div>
                 </div>
             </div>
-            <div class="p-grid" *ngIf="selectedSeries==='1'">
-                <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
-                    <div class="p-grid">
-                        <div class="p-col-8 p-lg-8 p-md-12 p-sm-12">
-                            <p-selectButton [options]="lstCrossSeries" [(ngModel)]="selectedCrossSeries"
-                                (onChange)="btnLoadSeriesData_Change()">
-                            </p-selectButton>
-                        </div>
-                        <div class="p-col-4 p-lg-4 p-md-12 p-sm-12" *ngIf="selectedCrossSeries !== '' ">
-                            <p-dropdown [options]="lstSeriesData" [(ngModel)]="selectedSeriesData" placeholder="Select"
-                                [style]="{ 'width': '200px'}"></p-dropdown>
-                        </div>
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+                <label class="label">End Period</label>
+                <br>
+                <div style="height:5px"></div>
+                <div class="p-grid">
+                    <div class="p-lg-1 p-md-2 p-sm-3">
+                        <input type="text" pInputText [(ngModel)]="txtEndPeriod" size="4" pKeyFilter="pint" />
+                    </div>
+                    <div class="p-lg-1 p-md-10 p-sm-9">
+                        <p-dropdown [options]="lstEndPeriod" [(ngModel)]="selectedEndPeriod"
+                            [style]="{ 'min-width': '100px'}">
+                        </p-dropdown>
                     </div>
                 </div>
-
-                <div class="p-col-12 p-lg-12 p-md-12 p-sm-12 p-nogutter">
-                    <div class="p-grid">
-                        <div class="p-col-4 p-lg-4 p-md-12 p-sm-12">
-                            <label class="label">Select Type</label>
-                            <br>
-                            <div style="height:5px"></div>
-                            <p-dropdown [options]="lstCrossType" [(ngModel)]="selectedCrossType"></p-dropdown>
-                        </div>
-                        <div class="p-col-8 p-lg-8 p-md-12 p-sm-12" *ngIf="boolSelectTime">
-                            <br>
-                            <div style="height:5px"></div>
-                            ({{selectedTime}})
-                        </div>
-                        <div class="p-col-8 p-lg-8 p-md-12 p-sm-12" *ngIf="!boolSelectTime">
-                            <label class="label">Select Date</label>
-                            <br>
-                            <div style="height:5px"></div>
-                            <p-calendar [(ngModel)]="selectedDate" [disabledDates]="invalidDates" [showIcon]="true"
-                                appendTo="body" [maxDate]="maxDate" [readonlyInput]="true" dateFormat="mm/dd/yy"
-                                [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
-                                showButtonBar="true">
-                            </p-calendar>
-                        </div>
+            </div>
+        </div>
+        <div *ngIf="selectedSeries==='1'">
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+                <div class="p-grid">
+                    <div class="p-col-8 p-lg-8 p-md-12 p-sm-12">
+                        <p-selectButton [options]="lstCrossSeries" [(ngModel)]="selectedCrossSeries"
+                            (onChange)="btnLoadSeriesData_Change()">
+                        </p-selectButton>
+                    </div>
+                    <div class="p-col-4 p-lg-4 p-md-12 p-sm-12" *ngIf="selectedCrossSeries !== '' ">
+                        <p-dropdown [options]="lstSeriesData" [(ngModel)]="selectedSeriesData" placeholder="Select"
+                            [style]="{ 'width': '200px'}"></p-dropdown>
                     </div>
                 </div>
-                <div class="p-lg-12 p-sm-12 p-col-nogutter">
-                    <p-panel header="Select Data Items">
-                        <div class="p-grid">
-                            <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-col-nogutter">
-                                <div class="p-lg-12 p-sm-12">
-                                    <label class="label">Categories</label>
-                                </div>
-                                <div class="p-lg-12 p-sm-12">
-                                    <p-listbox [options]="lstCategories" optionLabel="label"
-                                        [(ngModel)]="selectedCategory"
-                                        [listStyle]="{'max-height':'150px','min-height':'150px' }"
-                                        [style]="{'width':'100%'}" filter="filter"
-                                        (onChange)="lstCategory_Change($event)"></p-listbox>
-                                </div>
+            </div>
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+                <div class="p-grid">
+                    <div class="p-col-4 p-lg-4 p-md-12 p-sm-12">
+                        <label class="label">Select Type</label>
+                        <br>
+                        <div style="height:5px"></div>
+                        <p-dropdown [options]="lstCrossType" [(ngModel)]="selectedCrossType"></p-dropdown>
+                    </div>
+                    <div class="p-col-8 p-lg-8 p-md-12 p-sm-12" *ngIf="boolSelectTime">
+                        <br>
+                        <div style="height:5px"></div>
+                        ({{selectedTime}})
+                    </div>
+                    <div class="p-col-8 p-lg-8 p-md-12 p-sm-12" *ngIf="!boolSelectTime">
+                        <label class="label">Select Date</label>
+                        <br>
+                        <div style="height:5px"></div>
+                        <p-calendar [(ngModel)]="selectedDate" [disabledDates]="invalidDates" [showIcon]="true"
+                            appendTo="body" [maxDate]="maxDate" [readonlyInput]="true" dateFormat="mm/dd/yy"
+                            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" showButtonBar="true">
+                        </p-calendar>
+                    </div>
+                </div>
+            </div>
+            <div class="p-lg-12 p-sm-12">
+                <p-panel header="Select Data Items">
+                    <div class="p-grid">
+                        <div class="p-col-12 p-lg-6 p-md-6 p-sm-12">
+                            <div class="p-lg-12 p-sm-12">
+                                <label class="label">Categories</label>
                             </div>
-                            <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-col-nogutter">
-                                <div class="p-lg-12 p-sm-12">
-                                    <label class="label">Items</label>
-                                </div>
-                                <div class="p-lg-12 p-sm-12">
-                                    <p-listbox [options]="lstItems" optionLabel="label" [(ngModel)]="selectedItem"
-                                        [listStyle]="{'max-height':'150px','min-height':'150px'}"
-                                        [style]="{'width':'100%'}" filter="filter">
-                                    </p-listbox>
-                                </div>
+                            <div class="p-lg-12 p-sm-12">
+                                <p-listbox [options]="lstCategories" optionLabel="label" [(ngModel)]="selectedCategory"
+                                    [listStyle]="{'max-height':'150px','min-height':'150px' }"
+                                    [style]="{'width':'100%'}" filter="filter" (onChange)="lstCategory_Change($event)">
+                                </p-listbox>
                             </div>
                         </div>
-                    </p-panel>
-                </div>
+                        <div class="p-col-12 p-lg-6 p-md-6 p-sm-12">
+                            <div class="p-lg-12 p-sm-12">
+                                <label class="label">Items</label>
+                            </div>
+                            <div class="p-lg-12 p-sm-12">
+                                <p-listbox [options]="lstItems" optionLabel="label" [(ngModel)]="selectedItem"
+                                    [listStyle]="{'max-height':'150px','min-height':'150px'}" [style]="{'width':'100%'}"
+                                    filter="filter">
+                                </p-listbox>
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
             </div>
         </div>
     </div>

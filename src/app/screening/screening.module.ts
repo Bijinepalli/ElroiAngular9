@@ -14,6 +14,9 @@ import { MathmodelComponent } from './mathmodel/mathmodel.component';
 import { GrowthmodelComponent } from './growthmodel/growthmodel.component';
 import { SubindmodelComponent } from './subindmodel/subindmodel.component';
 import { AlphamodelComponent } from './alphamodel/alphamodel.component';
+import { BoolmodelComponent } from './boolmodel/boolmodel.component';
+import { DecilemodelComponent } from './decilemodel/decilemodel.component';
+import { MiddlemodelComponent } from './middlemodel/middlemodel.component';
 
 @NgModule({
     imports: [
@@ -34,6 +37,9 @@ import { AlphamodelComponent } from './alphamodel/alphamodel.component';
         GrowthmodelComponent,
         SubindmodelComponent,
         AlphamodelComponent,
+        BoolmodelComponent,
+        DecilemodelComponent,
+        MiddlemodelComponent,
     ]
 })
 export class ScreeningModule { }

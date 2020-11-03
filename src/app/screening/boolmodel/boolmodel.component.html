@@ -1,0 +1,121 @@
+<p-dialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '800px'}"
+    [blockScroll]="true">
+    <p-header>
+        Boolean logic
+    </p-header>
+    <div class="modelHeight550">
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+            <label class="label">Select Function</label>
+            <br>
+            <div style="height:5px"></div>
+            <p-selectButton [options]="lstSeries" [(ngModel)]="selectedSeries" [disabled]="isEditMode"></p-selectButton>
+        </div>
+        <div *ngIf="selectedSeries==='ISNA'" class="p-col-12">
+            <p-panel header="Select Criteria">
+                <div class="p-grid">
+                    <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-nogutter">
+                        <div class="p-lg-12 p-sm-12">
+                            <label class="label">Categories</label>
+                        </div>
+                        <div class="p-lg-12 p-sm-12">
+                            <p-listbox [options]="lstCategoriesISNA" optionLabel="label"
+                                [(ngModel)]="selectedCategoryISNA"
+                                [listStyle]="{'max-height':'180px','min-height':'180px' }" [style]="{'width':'100%'}"
+                                filter="filter" (onChange)="lstCategoryISNA_Change($event)"></p-listbox>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-nogutter">
+                        <div class="p-lg-12 p-sm-12">
+                            <label class="label">Items</label>
+                        </div>
+                        <div class="p-lg-12 p-sm-12">
+                            <p-listbox [options]="lstItemsISNA" optionLabel="label" [(ngModel)]="selectedItemISNA"
+                                [listStyle]="{'max-height':'180px','min-height':'180px'}" [style]="{'width':'100%'}"
+                                filter="filter">
+                            </p-listbox>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12" style="padding-left: 0em;">
+                <p-button label="Add Item" (onClick)="btnAddItemISNA_Click($event,opError)"></p-button>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-3 p-lg-3 p-md-12 p-sm-12">
+                    <label class="label">Value</label>
+                    <br>
+                    <div style="height:5px"></div>
+                    <p-spinner [(ngModel)]="txtValue" [min]="0" [max]="1" size="10"></p-spinner>
+                </div>
+
+                <div class="p-col-9 p-lg-9 p-md-12 p-sm-12">
+                    <label class="label">Criteria</label><br>
+                    <div style="height:5px"></div>
+                    <input type="text" pInputText [(ngModel)]="selectedCriteria" disabled="true" style="width: 19em;">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedSeries==='VALUE'" class="p-col-12">
+            <p-panel header="Select Criteria">
+                <div class="p-grid">
+                    <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-nogutter">
+                        <div class="p-lg-12 p-sm-12">
+                            <label class="label">Categories</label>
+                        </div>
+                        <div class="p-lg-12 p-sm-12">
+                            <p-listbox [options]="lstCategoriesValue" optionLabel="label"
+                                [(ngModel)]="selectedCategoryValue"
+                                [listStyle]="{'max-height':'180px','min-height':'180px' }" [style]="{'width':'100%'}"
+                                filter="filter" (onChange)="lstCategoryValue_Change($event)"></p-listbox>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-lg-6 p-md-6 p-sm-12 p-nogutter">
+                        <div class="p-lg-12 p-sm-12">
+                            <label class="label">Items</label>
+                        </div>
+                        <div class="p-lg-12 p-sm-12">
+                            <p-listbox [options]="lstItemsValue" optionLabel="label" [(ngModel)]="selectedItemValue"
+                                [listStyle]="{'max-height':'180px','min-height':'180px'}" [style]="{'width':'100%'}"
+                                filter="filter">
+                            </p-listbox>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12" style="padding-left: 0em;">
+                <p-button label="Add Item" (onClick)="btnAddItemValue_Click($event,op)"></p-button>
+            </div>
+            <div class="p-col-12 p-lg-12 p-md-12 p-sm-12" *ngIf="lstSelectedItems.length !== 0">
+                <p-table [value]="lstSelectedItems">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th width='90em'>Item</th>
+                            <th width='5em'>Delete</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                        <tr>
+                            <td>
+                                {{item.label}}
+                            </td>
+                            <td align="center">
+                                <p-button icon="pi pi-times" styleClass="ui-button-danger"
+                                    (click)="btnRemoveItem_Click(item.value)"></p-button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+    <p-overlayPanel #op appendTo="body" [dismissable]="true">
+        <p-message appendTo="ai" severity="error" [text]="errorMessages"></p-message>
+    </p-overlayPanel>
+    <p-overlayPanel #opError appendTo="body" [dismissable]="true">
+        <p-message severity="error" [text]="errorMessages"></p-message>
+    </p-overlayPanel>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click($event,opError)"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>

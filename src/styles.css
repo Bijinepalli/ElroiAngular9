@@ -214,6 +214,11 @@ body .ui-dialog .ui-dialog-footer {
   overflow: auto;
 }
 
+.modelHeight445 {
+  height: 445px;
+  overflow: auto;
+}
+
 .modelHeight450 {
   height: 450px;
   overflow: auto;
