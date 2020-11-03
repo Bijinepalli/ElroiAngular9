@@ -21,6 +21,11 @@ import { RankmodelComponent } from './rankmodel/rankmodel.component';
 import { NtilemodelComponent } from './ntilemodel/ntilemodel.component';
 import { CountrycodemodelComponent } from './countrycodemodel/countrycodemodel.component';
 import { CommonCoreModule } from '../common/common.module';
+import { IndexindicatormodelComponent } from './indexindicatormodel/indexindicatormodel.component';
+import { RussellindustrymodelComponent } from './russellindustrymodel/russellindustrymodel.component';
+import { GicsubindustrymodelComponent } from './gicsubindustrymodel/gicsubindustrymodel.component';
+import { ErsmodelComponent } from './ersmodel/ersmodel.component';
+import { ShorttermratingmodelComponent } from './shorttermratingmodel/shorttermratingmodel.component';
 
 @NgModule({
     imports: [
@@ -48,6 +53,11 @@ import { CommonCoreModule } from '../common/common.module';
         RankmodelComponent,
         NtilemodelComponent,
         CountrycodemodelComponent,
+        IndexindicatormodelComponent,
+        RussellindustrymodelComponent,
+        GicsubindustrymodelComponent,
+        ErsmodelComponent,
+        ShorttermratingmodelComponent,
     ]
 })
 export class ScreeningModule { }

@@ -1,0 +1,45 @@
+<p-dialog #stocksDialog visible="true" showEffect="fade" [modal]="true" [closable]="false"
+    [style]="{width: '800px', minWidth: '200px'}" [blockScroll]="true">
+    <p-header>
+        Select Industries
+    </p-header>
+    <div class="modelHeight445">
+        <div class="p-grid p-nogutter" style="margin-bottom:10px;">
+            <p-table [value]="lstIndustries">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:3em"></th>
+                        <th style="width:10em">SubIndustry ID</th>
+                        <th>SubIndustry Name</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-industry>
+                    <tr>
+                        <td>
+                            <p-checkbox name="list_name" value="{{industry.value}}" [(ngModel)]="industry.isSelected"
+                                (ngModelChange)="chkParentCheck_Change(industry)" binary="true"></p-checkbox>
+                        </td>
+                        <td style="font-weight:bold" colspan="2">{{industry.label}}</td>
+                    </tr>
+                    <tr *ngFor="let itemChild of industry.children">
+                        <td>
+                            <p-checkbox name="list_name_child" value="{{itemChild.value}}"
+                                [(ngModel)]="itemChild.isSelected"
+                                (ngModelChange)="chkChildCheck_Change(industry,industry.children)" binary="true">
+                            </p-checkbox>
+                        </td>
+                        <td>{{itemChild.value}}</td>
+                        <td>{{itemChild.label}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <p-overlayPanel #opError appendTo="body" [dismissable]="true">
+        <p-message severity="error" text="Please select Industry"></p-message>
+    </p-overlayPanel>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click($event,opError)"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>

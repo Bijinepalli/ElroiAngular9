@@ -4,11 +4,13 @@ import { FielderrorsComponent } from './fielderrors/fielderrors.component';
 import { FormsModule } from '@angular/forms';
 import { PrimenguiModule } from '../_ui/primengui/primengui.module';
 import { IncexcmodelComponent } from './incexcmodel/incexcmodel.component';
+import { DatesComponent } from './dates/dates.component';
 
 @NgModule({
     declarations: [
         FielderrorsComponent,
         IncexcmodelComponent,
+        DatesComponent,
     ],
     imports: [
         CommonModule,
@@ -18,7 +20,8 @@ import { IncexcmodelComponent } from './incexcmodel/incexcmodel.component';
     providers: [],
     exports: [
         FielderrorsComponent,
-        IncexcmodelComponent
+        IncexcmodelComponent,
+        DatesComponent
     ],
 })
 export class CommonCoreModule { }

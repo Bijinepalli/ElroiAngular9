@@ -1,0 +1,54 @@
+<p-dialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '800px'}"
+    [blockScroll]="true">
+    <p-header>
+        ERS Reason Indicator
+    </p-header>
+    <div class="modelHeight">
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12" *ngIf="title==='ERS Reason Indicator'">
+            <label class="label">Compare From</label>
+            <br>
+            <div style="height:5px"></div>
+            <p-dropdown [options]="lstCompareFrom" [(ngModel)]="selectedCompareFrom" [style]="{ 'width': '300px'}">
+            </p-dropdown>
+        </div>
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+            <label class="label">Reason Type</label>
+            <br>
+            <div style="height:5px"></div>
+            <p-dropdown [options]="lstReasonType" [(ngModel)]="selectedReasonType" [style]="{ 'width': '300px'}">
+            </p-dropdown>
+        </div>
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12">
+            <label class="label">Display Type</label>
+            <br>
+            <div style="height:5px"></div>
+            <p-dropdown [options]="lstDisplayType" [(ngModel)]="selectedDisplayType" [style]="{ 'width': '300px'}">
+            </p-dropdown>
+        </div>
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12" *ngIf="title!=='ERS Reason Indicator'">
+            <label class="label"></label>
+            <br>
+            <div style="height:5px"></div>
+            <p-selectButton [options]="lstSeries" [(ngModel)]="selectedSeries"></p-selectButton>
+        </div>
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12" *ngIf="selectedSeries !== '' && selectedSeries!=='4'">
+            <div style="height:5px"></div>
+            <input type="text" pInputText [(ngModel)]="txtStart" size="10" pKeyFilter="pint" />&nbsp;
+            <input type="text" pInputText [(ngModel)]="txtEnd" size="10" pKeyFilter="pint"
+                *ngIf="selectedSeries === '3'" />&nbsp;
+        </div>
+        <div class="p-col-12 p-lg-12 p-md-12 p-sm-12" *ngIf="selectedSeries==='4'">
+            <div style="height:5px"></div>
+            <p-dropdown [options]="lstOperator" [(ngModel)]="selectedOperator" appendTo="body">
+            </p-dropdown>&nbsp;
+            <input type="text" pInputText [(ngModel)]="txtFormula" size="10" pKeyFilter="pint" />&nbsp;
+        </div>
+    </div>
+    <p-overlayPanel #opError appendTo="body" [dismissable]="true">
+        <p-message severity="error" [text]="errorMessages"></p-message>
+    </p-overlayPanel>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click($event,opError)"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>

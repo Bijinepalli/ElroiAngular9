@@ -1,0 +1,38 @@
+<p-dialog visible="true" [responsive]="true" blockScroll="true" showEffect="fade" [closable]="false" [modal]="true"
+    [style]="{'width': '510px','height':'600px'}" [positionTop]="100">
+    <p-header>
+        Select Dates
+    </p-header>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <p-selectButton [options]="lstDates" [(ngModel)]="selectedDateType" (onOptionClick)="datesClick($event)">
+            </p-selectButton>
+        </div>
+    </div>
+    <div class="p-grid" *ngIf="selectedDateType==='1'">
+        <div class="p-col-12">
+            <p-calendar [(ngModel)]="selectedAbsoluteDate" [disabledDates]="lstInvalidDates" [showIcon]="true"
+                appendTo="body" [maxDate]="maxDate" [readonlyInput]="true" dateFormat="mm/dd/yy" [monthNavigator]="true"
+                [yearNavigator]="true" yearRange="2000:2030" showButtonBar="true"></p-calendar>
+        </div>
+    </div>
+    <div class="p-grid" *ngIf="selectedDateType==='2'">
+        <div class="p-col-5">
+            <input type="text" pInputText pKeyFilter="num" [(ngModel)]="selectedOperatorText">
+        </div>
+        <div class="p-col-7">
+            <p-dropdown [options]="lstOperators" appendTo="body" [(ngModel)]="selectedOperator"
+                [style]="{'min-width':'3em'}">
+            </p-dropdown>
+        </div>
+    </div>
+    <p-footer>
+        <div class="p-col-12 p-md-12" align="right">
+            <button pButton label="OK" class="ui-button-success" (click)="okClick()"></button> &nbsp;
+            <button pButton label="Cancel" (click)="cancelClick()" class="ui-button-danger"></button>
+        </div>
+    </p-footer>
+    <p-progressSpinner *ngIf="showSpinner" [style]="{width: '50px', height: '50px'}" class="positionMiddle"
+        strokeWidth="4">
+    </p-progressSpinner>
+</p-dialog>

@@ -443,40 +443,40 @@
     <app-incexcmodel (popUpClose)="modelClose($event,'incExc')" (popUpSubmit)="modelSubmit($event,'incExc')">
     </app-incexcmodel>
 </div>
-<!-- <div *ngIf="indexIndicatorModelOpen">
+<div *ngIf="indexIndicatorModelOpen">
     <app-indexindicatormodel [selectedIndexIndicators]="selectedIndexIndicators"
         (popUpClose)="modelClose($event,'indexIndicator')" (popUpSubmit)="modelSubmit($event,'indexIndicator')">
     </app-indexindicatormodel>
-</div> -->
-<!-- <div *ngIf="ersModelOpen">
+</div>
+<div *ngIf="ersModelOpen">
     <app-ersmodel [title]="selectedERSModel" [selectedERS]="selectedERS" (popUpClose)="modelClose($event,'ers')"
         (popUpSubmit)="modelSubmit($event,'ers')">
     </app-ersmodel>
-</div> -->
-<!-- <div *ngIf="strModelOpen">
+</div>
+<div *ngIf="strModelOpen">
     <app-shorttermratingmodel [item]="itemInput" [selectedSTR]="selectedSTR" (popUpClose)="modelClose($event,'str')"
         (popUpSubmit)="modelSubmit($event,'str')">
     </app-shorttermratingmodel>
-</div> -->
-<!-- <div *ngIf="russellIndModelOpen">
+</div>
+<div *ngIf="russellIndModelOpen">
     <app-russellindustrymodel [selectedRusselIndustry]="selectedRusselIndustry"
         (popUpClose)="modelClose($event,'russellInd')" (popUpSubmit)="modelSubmit($event,'russellInd')">
     </app-russellindustrymodel>
-</div> -->
-<!-- <div *ngIf="gicsubindModelOpen">
+</div>
+<div *ngIf="gicsubindModelOpen">
     <app-gicsubindustrymodel [selectedGICSubIndustries]="selectedGICSubIndustries"
         (popUpClose)="modelClose($event,'gicsubind')" (popUpSubmit)="modelSubmit($event,'gicsubind')">
     </app-gicsubindustrymodel>
-</div> -->
-<!-- <div *ngIf="displayDatesDialog">
+</div>
+<div *ngIf="displayDatesDialog">
     <app-dates (dialogOkEvent)="modelSubmit($event,'dates')" (dialogCancelEvent)="modelClose($event,'dates')">
     </app-dates>
-</div> -->
-<!-- <div *ngIf="displayDatesGridDialog">
+</div>
+<div *ngIf="displayDatesGridDialog">
     <app-dates [valRequired]="yearValidation" (dialogOkEvent)="modelSubmit($event,'datesGrid')"
         (dialogCancelEvent)="modelClose($event,'datesGrid')">
     </app-dates>
-</div> -->
+</div>
 <p-toast [style]="{marginTop: '80px'}" key="saveSuccess" appendTo="body"></p-toast>
 <p-toast [style]="{marginTop: '80px'}" key="saveError" appendTo="body"></p-toast>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

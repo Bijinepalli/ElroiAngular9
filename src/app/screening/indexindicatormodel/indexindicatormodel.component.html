@@ -1,0 +1,83 @@
+<p-dialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '800px'}"
+    [blockScroll]="true">
+    <p-header>
+        Index Indicators
+    </p-header>
+    <div class="modelHeight p-grid">
+        <div class="p-col-12 p-md-12 p-lg-6">
+            <p-panel header="S&P Index Indicator" [style]="{'width':'100%'}">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <p-table [value]="lstSpBenchmark" [(selection)]="selectedSpBenchmark" dataKey="benchId">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 3em">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th style="width: 5em">
+                                        Equal
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-bench>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="bench"></p-tableCheckbox>
+                                    </td>
+                                    <td>
+                                        <p-inputSwitch [(ngModel)]="bench.isEqual"></p-inputSwitch>
+                                    </td>
+                                    <td>
+                                        {{bench.benchMark}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+        <div class="p-col-12 p-md-12 p-lg-6">
+            <p-panel header="Russell Index Indicator" [style]="{'width':'100%'}">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <p-table [value]="lstRusselBenchmark" [(selection)]="selectedRusselBenchmark" dataKey="benchId">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 3em">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th style="width: 5em">
+                                        Equal
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-bench>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="bench"></p-tableCheckbox>
+                                    </td>
+                                    <td>
+                                        <p-inputSwitch [(ngModel)]="bench.isEqual"></p-inputSwitch>
+                                    </td>
+                                    <td>
+                                        {{bench.benchMark}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click()"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>

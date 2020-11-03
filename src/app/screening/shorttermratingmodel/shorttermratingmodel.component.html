@@ -1,0 +1,49 @@
+<p-dialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '800px'}">
+    <p-header>
+        {{heading}}
+    </p-header>
+    <div class="modelHeight">
+        <div class="p-col-12 p-md-12 p-lg-12">
+            <p-panel [header]="heading" [style]="{'width':'100%'}">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <p-table #dt [value]="lstRatings" [(selection)]="selectedRating" dataKey="ratingDatabaseValue">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 3em">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th style="width: 5em">
+                                        Equal
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rat>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="rat"></p-tableCheckbox>
+                                    </td>
+                                    <td>
+                                        <p-inputSwitch [(ngModel)]="rat.isEqual"></p-inputSwitch>
+                                    </td>
+                                    <td>
+                                        {{rat.ratingDisplayValue}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+    <p-overlayPanel #opError appendTo="body" [dismissable]="true">
+        <p-message severity="error" text="Please Select an Item"></p-message>
+    </p-overlayPanel>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click($event,opError)"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>
