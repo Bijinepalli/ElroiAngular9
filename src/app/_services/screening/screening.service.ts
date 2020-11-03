@@ -209,9 +209,7 @@ export class ScreeningService {
    * @returns  ReturnValue for Status
    */
   insertCreateScreenData(data) {
-    console.log(data);
     const body = JSON.stringify(data);
-    console.log(body);
     return this.http.post<any>(this.serviceURL + 'SaveScreeningData', body, { headers: this.getHttpOptions() });
   }
 

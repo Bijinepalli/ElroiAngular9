@@ -1,0 +1,134 @@
+<p-dialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '800px'}"
+    [blockScroll]="true">
+    <p-header>
+        Include/Exclude
+    </p-header>
+    <div class="modelHeight500">
+        <div class="p-grid" style="margin-right: auto;">
+            <div class="p-col-6">
+                <p-selectButton [options]="lstOptionItems" [(ngModel)]="selectedOption" (onChange)="changeNote()">
+                </p-selectButton>
+            </div>
+            <div class="p-col-6" *ngIf="stocksCount > 0">
+                <label class="label">Present Stocks:</label>&nbsp;
+                <a>{{stocksCount}}</a>
+                &nbsp;
+                <i class="label fa fa-eye" (click)="onStocksClick($event,op3)" style="cursor: pointer;"></i>
+            </div>
+            <div class="p-col-12">
+                <button pButton type="button" label="Search Tickers" [disabled]="selectedOption==''"
+                    (click)="op.toggle($event)" style="width:10em"></button>&nbsp;
+                <font color="red">{{note}}</font>
+            </div>
+            <div class="p-col-6">
+                <p-panel header="Include Tickers">
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <p-listbox [options]="lstIncluded" [(ngModel)]="selectedInclude"
+                                [style]="{height:'250px',width:'100%'}">
+                            </p-listbox>
+                        </div>
+                    </div>
+                    <p-footer>
+                        <button pButton type="button" label="Delete" class="ui-button-danger"
+                            (click)="onClickIncDelete()"></button>&nbsp;
+                        <button pButton type="button" label="Clear" class="ui-button-warning"
+                            (click)="onClickIncClear()"></button>
+                    </p-footer>
+                </p-panel>
+            </div>
+            <div class="p-col-6">
+                <p-panel header="Exclude Tickers">
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <p-listbox [options]="lstExcluded" [(ngModel)]="selectedExclude"
+                                [style]="{height:'250px',width:'100%'}"></p-listbox>
+                        </div>
+                    </div>
+                    <p-footer>
+                        <button pButton type="button" label="Delete" class="ui-button-danger"
+                            (click)="onClickExcDelete()"></button>&nbsp;
+                        <button pButton type="button" label="Clear" class="ui-button-warning"
+                            (click)="onClickExcClear()"></button>
+                    </p-footer>
+                </p-panel>
+            </div>
+        </div>
+        <p-overlayPanel #op appendTo="body" [showCloseIcon]="true" (onShow)="onOverlayShow()">
+            <div class="p-grid" style="width: 47em">
+                <div class="p-col-12" *ngIf="showReport">
+                    <div class="p-col-12" style="background: #e7e7e7;" *ngIf="recordsCount === 0">
+                        <div class="p-col-12 p-md-6 p-lg-6 NoDataMessage" style="color:red;">
+                            No matching data for the selected criteria
+                        </div>
+                    </div>
+                    <div class="p-col-12" *ngIf="recordsCount > 0">
+                        <p-table #dt [columns]="cols" [value]="lstCompanyTickers" [paginator]="true" [rows]="4"
+                            (onPage)="paginate($event)" [responsive]="true" [(first)]="first"
+                            [(selection)]="lstSelectedCompanies">
+                            <ng-template pTemplate="caption" let-title>
+                                <tr class="p-grid recordsBar">
+                                    <td class="p-lg-6 p-md-12 p-sm-12 label" style="text-align: left; padding-top:.5em">
+                                        List of Companies
+                                    </td>
+                                    <td class="p-lg-6 p-md-12 p-sm-12 label"
+                                        style="text-align: right; padding-top:.5em">
+                                        No of Records: {{recordsCount}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th style="width:5em;">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                        {{col.header}}
+                                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                                        <input *ngSwitchCase="'companyName'" pInputText type="text"
+                                            (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                        <input *ngSwitchCase="'tickerSymbol'" pInputText type="text"
+                                            (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr>
+                                    <td align="center">
+                                        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                                    </td>
+                                    <td *ngFor="let col of columns">
+                                        <span class="ui-column-title">{{col.header}}</span> {{rowData[col.field]}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <p-button label="OK" (click)="onClickOk()"></p-button>&nbsp;
+                    <p-button label="Cancel" (click)="onClickClose()"></p-button>
+                </div>
+            </div>
+        </p-overlayPanel>
+    </div>
+    <p-footer>
+        <p-button label="Submit" (click)="submit()"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="closeModel()"></p-button>
+    </p-footer>
+    <p-overlayPanel #op3 [showCloseIcon]="true" [dismissable]="true" autoZIndex="true" appendTo="body">
+        <div class="p-grid" style="width: 250px">
+            <label class="label">Stocks</label>
+            <br>
+            <div style="height:5px"></div>
+            <textarea rows="10" cols="40" [(ngModel)]="selectedStocks" pInputTextarea [disabled]="true"></textarea>
+        </div>
+    </p-overlayPanel>
+</p-dialog>

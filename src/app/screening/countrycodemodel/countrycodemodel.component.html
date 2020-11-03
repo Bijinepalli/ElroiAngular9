@@ -1,0 +1,44 @@
+<p-dialog visible="true" showEffect="fade" [modal]="true" [closable]="false" [style]="{width: '600px'}">
+    <p-header>
+        Country Codes
+    </p-header>
+    <div class="modelHeight445">
+        <div class="p-grid p-nogutter">
+            <div class="p-col-12 p-md-12 p-lg-12 p-sm-12">
+                <p-table #dt [columns]="cols" [value]="lstCountryCodes" [(selection)]="selectedCountry"
+                    dataKey="countryId">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th style="width: 3em">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th *ngFor="let col of columns" [style.width]="col.width">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <ng-container>
+                                <td>
+                                    <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                                </td>
+                                <td *ngFor="let col of columns" [style.width]="col.width"
+                                    [style.text-align]="col.align">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+    <p-overlayPanel #opError appendTo="body" [dismissable]="true">
+        <p-message severity="error" text="Please Select Country Code"></p-message>
+    </p-overlayPanel>
+    <p-footer>
+        <p-button label="Submit" (click)="btnSubmit_Click($event,opError)"></p-button>&nbsp;
+        <p-button label="Close" styleClass="ui-button-danger" (click)="btnClose_Click()"></p-button>
+    </p-footer>
+</p-dialog>

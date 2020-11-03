@@ -313,8 +313,6 @@ export class AlphasService {
   }
 
   getAlphaSpanDetails(alphaView: AlphaView) {
-    console.log('span service');
-    console.log(alphaView);
     const body = JSON.stringify(alphaView);
     return this.http.post<AlphaSpanTickers[]>(this.serviceURL + 'GetAlphaSpanDeciles', body, { headers: this.getHttpOptions() });
   }

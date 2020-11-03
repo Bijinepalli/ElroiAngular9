@@ -52,7 +52,6 @@ export abstract class LogPublisher {
 export class LogConsole extends LogPublisher {
   log(entry: LogEntry) {
     // Log to console
-    console.log(entry.buildLogString());
   }
   clear() {
     console.clear();
@@ -88,7 +87,6 @@ export class LogLocalStorage
       ret = true;
     } catch (ex) {
       // Display error in console
-      console.log(ex);
     }
   }
 

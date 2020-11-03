@@ -29,22 +29,18 @@ export class AuthenticationService implements CanActivate {
 
   authenticateUser(credentials: Authenticate) {
     const body = JSON.stringify(credentials);
-    console.log(credentials);
     return this.http.post<Authenticate>(this.authurl + 'authenticate/authenticatelogin', body, { headers: this.getHttpOptions() });
   }
   checkuserOldPassword(credentials: Authenticate) {
     const body = JSON.stringify(credentials);
-    console.log(credentials);
     return this.http.post<Authenticate>(this.authurl + 'authenticate/checkuseroldpassword', body, { headers: this.getHttpOptions() });
   }
   changePassword(credentials: Authenticate) {
     const body = JSON.stringify(credentials);
-    console.log(credentials);
     return this.http.post<Authenticate>(this.authurl + 'authenticate/changepassword', body, { headers: this.getHttpOptions() });
   }
   assignregeneratedjwt(credentials: Authenticate) {
     const body = JSON.stringify(credentials);
-    console.log(credentials);
     return this.http.post<Authenticate>(this.authurl + 'authenticate/assignregeneratedjwt', body, { headers: this.getHttpOptions() });
   }
 

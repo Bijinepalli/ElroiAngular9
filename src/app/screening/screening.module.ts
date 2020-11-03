@@ -17,12 +17,17 @@ import { AlphamodelComponent } from './alphamodel/alphamodel.component';
 import { BoolmodelComponent } from './boolmodel/boolmodel.component';
 import { DecilemodelComponent } from './decilemodel/decilemodel.component';
 import { MiddlemodelComponent } from './middlemodel/middlemodel.component';
+import { RankmodelComponent } from './rankmodel/rankmodel.component';
+import { NtilemodelComponent } from './ntilemodel/ntilemodel.component';
+import { CountrycodemodelComponent } from './countrycodemodel/countrycodemodel.component';
+import { CommonCoreModule } from '../common/common.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         PrimenguiModule,
+        CommonCoreModule,
         ScreeningRoutingModule,
     ],
     declarations: [
@@ -40,6 +45,9 @@ import { MiddlemodelComponent } from './middlemodel/middlemodel.component';
         BoolmodelComponent,
         DecilemodelComponent,
         MiddlemodelComponent,
+        RankmodelComponent,
+        NtilemodelComponent,
+        CountrycodemodelComponent,
     ]
 })
 export class ScreeningModule { }

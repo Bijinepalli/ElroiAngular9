@@ -35,7 +35,6 @@ export class CommoncoreService {
 
   updateModuleTrack(data) {
     const body = JSON.stringify(data);
-    console.log('update module track -' + data.moduleName);
     if (data.moduleName !== 'Portfolio Analysis') {
       if (sessionStorage.getItem(this.envKey.toString() + 'portfolioTrackData')) {
         sessionStorage.removeItem(this.envKey.toString() + 'portfolioTrackData');
@@ -47,7 +46,6 @@ export class CommoncoreService {
     if (data.moduleName !== 'Screening') {
       if (sessionStorage.getItem(this.envKey.toString() + 'queryData')) {
         sessionStorage.removeItem(this.envKey.toString() + 'queryData');
-        console.log('screening session removed');
       }
     }
     return this.http.post<any>(this.serviceURL + 'UpdateModuleTrack', body, { headers: this.getHttpOptions() });

@@ -988,7 +988,6 @@ export class ConstructscreenComponent implements OnInit, OnDestroy {
             this.navigateByRoute(PageRoutes.ScreeningViewReport, 'View');
             break;
           case 'Combined':
-            console.log(page);
             this.getQueryDetails(PageRoutes.ViewCombinedAlphas, 'View', 'Combined');
             break;
           case 'Alphas':
@@ -2518,7 +2517,6 @@ export class ConstructscreenComponent implements OnInit, OnDestroy {
                   }
                   sessionStorage.setItem(this.envKey.toString() + 'screeningCompanyIds', this.companyIds);
                   sessionStorage.setItem(this.envKey.toString() + 'tickers', JSON.stringify(this.lstTickers));
-                  console.log(path);
                   this.navigateByRoute(path, mode);
                 });
             }

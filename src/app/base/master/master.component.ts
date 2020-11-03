@@ -441,7 +441,6 @@ export class MasterComponent implements OnInit, OnDestroy {
 
   maintainTheme() {
     const theme = sessionStorage.getItem(this.envKey.toString() + 'theme');
-    console.log(theme);
     if (theme === 'light') {
       this.themeIcon = 'fa fa-sun-o';
       this.themeTip = 'Switch theme';
@@ -490,7 +489,6 @@ export class MasterComponent implements OnInit, OnDestroy {
       date.setUTCSeconds(decode.exp);
       const diff = date.valueOf() - new Date().valueOf();
       const diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
-      console.log(diffMins);
       if (diffMins === 5 || diffMins === 4 || diffMins === 3 || diffMins === 2) {
         // alert('token expiring soon');
         this.expireMinutes = diffMins.toString();
